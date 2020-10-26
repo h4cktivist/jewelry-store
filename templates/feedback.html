@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Feedback</title>
+</head>
+<body>
+	<form method="post">
+		<input type="text" name="feedback_name"><br>
+		<input type="text" name="feedback_text"><br>
+		<input type="submit" value="Submit">
+	</form>
+
+	{% if feedbacks|length > 0 %}
+
+			{% for el in feedbacks %}
+				<p>Имя: {{ el.feedback_name }}</p>
+				<p>Отзыв: {{ el.feedback_text }}</p>
+				<br>
+			{% endfor %}
+
+	{% else %}
+		<p>Здесь пока нет отзывов</p>
+	{% endif %}
+
+</body>
+</html>

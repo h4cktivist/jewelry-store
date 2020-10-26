@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Products</title>
+</head>
+<body>
+	{% if products|length > 0 %}
+
+		{% for el in products %}
+			<p>Название {{ el.product_name }}</p>
+			<p>Описание {{ el.product_description }}</p>
+			<p>Изображение </p> <img src="data:;base64,{{ el.product_img }}">
+			<p>Дата {{ el.product_date }}</p>
+		{% endfor %}
+
+	{% else %}
+		<p>Здесь пока нет товаров</p>
+	{% endif %}
+</body>
+</html>
