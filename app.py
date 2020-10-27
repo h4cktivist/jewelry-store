@@ -56,6 +56,21 @@ def readImage(img_name):
 		print("ERROR!!")
 
 
+@app.route('/admin_login', methods=['POST', 'GET'])
+def admin_login():
+	if request.method == 'POST':
+		login = request.form['login']
+		passsword = request.form['password']
+
+		if (login == 'admin') and (passsword == 'admin_pass'):
+			return redirect('/new_product_reg')
+		else:
+			return "Wrond login and passsword!"
+
+	else:
+		return render_template('admin_login.html')
+
+
 @app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
 	if request.method == 'POST':
@@ -82,8 +97,6 @@ def order():
 		name = request.form['name']
 		contact = request.form['contact']
 		order = request.form['order']
-
-		print(name, contact, order)
 
 		notification_data = NotificationInfo(name=name, contact=contact, order=order)
 
