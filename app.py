@@ -1,7 +1,7 @@
 from datetime import datetime
 import sys
 import sqlite3 as lite
-from flask import Flask, render_template, url_for, request, redirect
+from flask import Flask, render_template, url_for, request, redirect, session, escape
 from flask_sqlalchemy import SQLAlchemy
 import telebot
 from werkzeug.utils import secure_filename
@@ -9,6 +9,7 @@ from base64 import b64encode
 
 
 app = Flask(__name__)
+app.secret_key = 'secret_key'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
@@ -60,14 +61,22 @@ def readImage(img_name):
 def admin_login():
 	if request.method == 'POST':
 		login = request.form['login']
-		passsword = request.form['password']
+		password = request.form['password']
 
-		if (login == 'admin') and (passsword == 'admin_pass'):
-			return redirect('/new_product_reg')
+		if not 'logged_in' in session:
+			if (login == 'admin') and (password == 'admin_pass'):
+				session['logged_in'] = True
+				return redirect('/new_product_reg')
+			else:
+				return "Wrond login and passsword!"
 		else:
-			return "Wrond login and passsword!"
+			if 'logged_in' in session:
+				return redirect('/new_product_reg')
 
 	else:
+		if 'logged_in' in session:
+			return redirect('new_product_reg')
+
 		return render_template('admin_login.html')
 
 
@@ -134,7 +143,10 @@ def new_product_reg():
 			return "ERROR!"
 
 	else:
-		return render_template('new_product_reg.html')
+		if 'logged_in' in session:
+			return render_template('new_product_reg.html')
+		else:
+			return redirect('/admin_login')
 
 
 @app.route('/products')
@@ -157,5 +169,5 @@ def start_message(message):
 
 
 if __name__ == "__main__":
-    app.run(debug=True)
-    bot.polling()
+	app.run(debug=True)
+	bot.polling()
