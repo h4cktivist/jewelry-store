@@ -166,6 +166,7 @@ def start_message(message):
 		bot.send_message(message.chat.id, "Имя заказчика: " + el.name)
 		bot.send_message(message.chat.id, "Как с ним связаться: " + el.contact)
 		bot.send_message(message.chat.id, "Заказ: " + el.order)
+		bot.send_message(message.chat.id, "_______________________________________")
 
 
 if __name__ == "__main__":
