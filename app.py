@@ -57,6 +57,29 @@ def readImage(img_name):
 		print("ERROR!!")
 
 
+@app.route('/')
+def index():
+	if not 'user_name' in session:
+		return redirect('/user_login')
+	else:
+		return render_template('index.html')
+
+
+@app.route('/user_login', methods=['POST', 'GET'])
+def user_login():
+	if request.method == 'POST':
+		session['user_name'] = request.form['user_name']
+		return redirect('/')
+	else:
+		return render_template('user_login.html')
+
+
+@app.route('/user_logout')
+def logout():
+	session['user_name'] = None
+	return redirect('/')
+
+
 @app.route('/admin_login', methods=['POST', 'GET'])
 def admin_login():
 	if request.method == 'POST':
@@ -75,7 +98,7 @@ def admin_login():
 
 	else:
 		if 'logged_in' in session:
-			return redirect('new_product_reg')
+			return redirect('/new_product_reg')
 
 		return render_template('admin_login.html')
 
@@ -155,7 +178,6 @@ def products():
 	for product in products:
 		product.product_img = b64encode(product.product_img).decode('utf-8')
 	return render_template('products.html', products=products)
-
 
 
 @bot.message_handler(commands=['start'])
