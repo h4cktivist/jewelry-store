@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Index</title>
+</head>
+<body>
+	{% if session.user_name %}
+		You are logged as {{ session.user_name }} <a href="/user_logout">Log Out</a>
+	{% else %}
+		You are not logged in <a href="/user_login">Log In</a>
+	{% endif %}
+</body>
+</html>
