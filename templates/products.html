@@ -9,8 +9,7 @@
 		{% for el in products %}
 			<p>Название {{ el.product_name }}</p>
 			<p>Описание {{ el.product_description }}</p>
-			<p>Изображение </p> <img src="data:;base64,{{ el.product_img }}">
-			<p>Дата {{ el.product_date }}</p>
+			<p>Изображение </p> <img width="200" height="200" src="data:;base64,{{ el.product_img }}">
 		{% endfor %}
 
 	{% else %}
