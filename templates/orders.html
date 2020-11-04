@@ -1,0 +1,14 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Заказы</title>
+</head>
+<body>
+	<h1>Заказы</h1>
+	{% for order in orders %}
+		<p>Имя заказчика: {{ order.name }}</p>
+		<p>Как с ним связаться: {{ order.contact }}</p>
+		<p>Заказ: {{ order.order }}</p>
+	{% endfor %}
+</body>
+</html>
