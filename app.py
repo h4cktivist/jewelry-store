@@ -103,6 +103,14 @@ def admin_login():
 		return render_template('admin_login.html')
 
 
+@app.route('/admin_page')
+def admin_page():
+	if 'logged_in' in session:
+		return render_template('admin_page.html')
+	else:
+		return redirect('/admin_login')
+
+
 @app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
 	if request.method == 'POST':
@@ -141,6 +149,15 @@ def order():
 
 	else:
 		return render_template('order.html')
+
+
+@app.route('/orders')
+def orders():
+	if 'logged_in' in session:
+		orders = NotificationInfo.query.order_by(NotificationInfo.id.desc()).all()
+		return render_template('orders.html', orders=orders)
+	else:
+		return redirect('/admin_login')
 
 
 @app.route('/new_product_reg', methods=['POST', 'GET'])
