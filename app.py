@@ -89,16 +89,16 @@ def admin_login():
 		if not 'logged_in' in session:
 			if (login == 'admin') and (password == 'admin_pass'):
 				session['logged_in'] = True
-				return redirect('/new_product_reg')
+				return redirect('/admin_page')
 			else:
 				return "Wrond login and passsword!"
 		else:
 			if 'logged_in' in session:
-				return redirect('/new_product_reg')
+				return redirect('/admin_page')
 
 	else:
 		if 'logged_in' in session:
-			return redirect('/new_product_reg')
+			return redirect('/admin_page')
 
 		return render_template('admin_login.html')
 
