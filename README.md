@@ -71,6 +71,7 @@ $ python app.py
 - /feedback (feedback.html)
 - /order (order.html)
 - /new_product_reg (new_product_reg.html)
+- /ordres (orders.html)
 - /products (products.html)
 
 Ну вот и все, данными дейстивиями вы смогли запустить данный проект на своем компьютере и можете приступать к разработке. О ее нюансах речь пойдет в другом гайде.
