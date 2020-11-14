@@ -43,6 +43,7 @@ class NewProduct(db.Model):
 	product_description = db.Column(db.String(200), nullable=False)
 	product_date = db.Column(db.DateTime, default=datetime.utcnow)
 	product_img = db.Column(db.BLOB())
+	product_cost = db.Column(db.String(10), nullable=False)
 
 	def __repr__(self):
 		return '<NewProduct %r>' % self.id
@@ -165,6 +166,7 @@ def new_product_reg():
 	if request.method == 'POST':
 		product_name = request.form['product_name']
 		product_description = request.form['product_description']
+		product_cost = request.form['product_cost']
 		file = request.files['product_img']
 
 		if file:
@@ -173,7 +175,10 @@ def new_product_reg():
 			product_img = file.read()
 			product_img_binary = lite.Binary(product_img)
 
-		product_data = NewProduct(product_name=product_name, product_description=product_description, product_img=product_img_binary)
+		product_data = NewProduct(product_name=product_name, 
+			product_description=product_description, 
+			product_cost=product_cost, 
+			product_img=product_img_binary)
 
 		try:
 			db.session.add(product_data)
