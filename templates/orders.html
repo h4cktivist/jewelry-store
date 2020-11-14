@@ -5,10 +5,16 @@
 </head>
 <body>
 	<h1>Заказы</h1>
-	{% for order in orders %}
-		<p>Имя заказчика: {{ order.name }}</p>
-		<p>Как с ним связаться: {{ order.contact }}</p>
-		<p>Заказ: {{ order.order }}</p>
-	{% endfor %}
+	{% if orders|length > 0 %}
+
+		{% for order in orders %}
+			<p>Имя заказчика: {{ order.name }}</p>
+			<p>Как с ним связаться: {{ order.contact }}</p>
+			<p>Заказ: {{ order.order }}</p>
+		{% endfor %}
+
+	{% else %}
+		<p>Новых заказов нет</p>
+	{% endif %}
 </body>
 </html>
