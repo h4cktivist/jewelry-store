@@ -1,0 +1,39 @@
+
+body {
+  margin:0;
+  padding:0;
+}
+
+.header__panel {
+  height: 38px;
+  width: 100vw;
+  max-width: 100%;
+  position: sticky;
+  background:#393F3A;
+
+  .wrapper {
+    max-width:1200px;
+    margin:0 auto;
+    display:flex;
+    justify-content:space-around;
+    align-items: center;
+  }
+}
+
+.social {
+  display:flex;
+  align-items: center;
+  max-width:160px;
+  height:38px;
+  justify-content:space-around;
+
+  .social__item {
+    margin-right:28px;
+  }
+}
+
+.login {
+  color: #ECE0E0;
+  font-size: 14px;
+  font-family: sans-serif;
+}
