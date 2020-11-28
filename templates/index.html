@@ -17,12 +17,44 @@
 		</div>
 		<div class="login">
 			{% if session.user_name %}
-				You are logged as {{ session.user_name }} <a href="/user_logout">Log Out</a>
+				You are logged as {{ session.user_name }} <a class="log" href="/user_logout">Log Out</a>
 			{% else %}
-				You are not logged in <a href="/user_login">Log In</a>
+				 <a href="/user_login">Войти</a>
 			{% endif %}
 		</div>
 	</div>
 </header>
+
+<div class="image-wrapper">
+	<div class="search">
+		<form name="test" method="post" action="input1.php">
+			<input class="input-search" type="text" placeholder="Поиск товара по категории">
+		</form>
+		<button class="button-search">Поиск</button>
+	</div>
+
+	<div class="description">
+		<h1>YUPIBUM</h1>
+		<span>- украшения ручной работы,</span>
+		<span>изготовленные с любовью.</span>
+	</div>
+
+	<div class="leaf-block">
+		<div class="box"></div>
+		<div class="box_img">
+			<img src="{{ url_for('static', filename='images/front-img.png') }}">
+		</div>
+	</div>
+
+	<nav class="navigation">
+		<button class="active-button"><a href="#">ГЛАВНАЯ</a></button>
+		<button class="button"><a href="#">О НАС</a></button>
+		<button class="button"><a href="#">КАТАЛОГ</a></button>
+		<button class="button"><a href="#">КОНТАКТЫ</a></button>
+		<button class="button"><a href="#">КОРЗИНА</a></button>
+	</nav>
+</div>
+
+
 </body>
 </html>

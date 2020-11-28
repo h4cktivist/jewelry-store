@@ -1,3 +1,8 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -5,16 +10,15 @@ body {
 
 .header__panel {
   height: 38px;
-  width: 100vw;
   max-width: 100%;
   position: sticky;
   background: #393F3A;
 }
 .header__panel .wrapper {
-  max-width: 1200px;
+  max-width: 1150px;
   margin: 0 auto;
   display: flex;
-  justify-content: space-around;
+  justify-content: space-between;
   align-items: center;
 }
 
@@ -33,6 +37,111 @@ body {
   color: #ECE0E0;
   font-size: 14px;
   font-family: sans-serif;
+}
+.login a {
+  color: white;
+  text-decoration: none;
+}
+.login a:hover {
+  font-weight: bolder;
+}
+
+.image-wrapper {
+  background-image: url("images/back-img.jpg");
+  width: 1200px;
+  height: 702px;
+  margin: 0 auto;
+}
+.image-wrapper .search {
+  display: flex;
+  align-items: center;
+  padding: 20px;
+}
+.image-wrapper .input-search {
+  width: 223px;
+  height: 27px;
+  outline: none;
+}
+.image-wrapper .button-search {
+  width: 59px;
+  height: 27px;
+  background: #C4C4C4;
+  border-radius: 10px;
+  cursor: pointer;
+  outline: none;
+  border: none;
+  margin-left: 10px;
+  transition-duration: 0.5s;
+}
+.image-wrapper .button-search:hover {
+  background-color: #788E7B;
+  color: #ECE0E0;
+}
+
+.description {
+  text-align: center;
+  font-family: Georgia;
+}
+.description h1 {
+  font-weight: 200;
+  font-size: 96px;
+  color: #4C6247;
+  margin: 0;
+  padding-top: 30px;
+}
+.description span {
+  font-size: 18px;
+  font-family: Serif;
+  color: #897A7A;
+  display: block;
+}
+
+.leaf-block {
+  margin-top: 30px;
+  margin-left: 240px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.leaf-block .box {
+  width: 823px;
+  height: 116px;
+  border-radius: 20px;
+  background: #788E7B;
+  position: relative;
+}
+.leaf-block .box_img {
+  position: relative;
+  right: 480px;
+}
+
+.navigation {
+  margin-top: 100px;
+  display: flex;
+  justify-content: space-around;
+}
+.navigation .button {
+  width: 200px;
+  height: 40px;
+  background: #788E7B;
+  border-radius: 10px;
+  outline: none;
+  border: none;
+}
+.navigation .button:hover {
+  background: #485e4a;
+  transition-duration: 0.5s;
+}
+.navigation .active-button {
+  width: 200px;
+  height: 40px;
+  background: #393F3A;
+  border-radius: 10px;
+}
+.navigation a {
+  font-size: 14px;
+  color: #FFFFFF;
+  text-decoration: none;
 }
 
 /*# sourceMappingURL=index.css.map */
