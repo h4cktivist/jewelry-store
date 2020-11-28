@@ -195,7 +195,29 @@ body {
   }
 }
 
+.footer {
+  width: 1200px;
+  height:240px;
+  margin: 0 auto;
+  display: flex;
+  justify-content:center;
+  align-items:center;
+  flex-direction:column;
+  background:#393F3A;
 
+  h2 {
+    font-size: 48px;
+    color: #788E7B;
+    font-weight: lighter;
+  }
+
+  span {
+    display:block;
+    font-size:18px;
+    color: #788E7B;
+  }
+
+}
 
 
 
