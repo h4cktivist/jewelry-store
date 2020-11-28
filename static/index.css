@@ -144,4 +144,37 @@ body {
   text-decoration: none;
 }
 
+.products__wrapper {
+  width: 1200px;
+  margin: 0 auto;
+  margin-top: 80px;
+}
+
+.products__cards {
+  margin: 0 auto;
+  max-width: 1000px;
+  align-content: center;
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+}
+.products__cards .card {
+  margin-right: 15px;
+  margin-left: 15px;
+  margin-bottom: 50px;
+  display: block;
+  text-decoration: none;
+  font-size: 14px;
+  color: #000000;
+}
+.products__cards .card:hover {
+  box-shadow: 0 2px 35px 14px rgba(72, 94, 74, 0.04);
+}
+.products__cards .card .card__content {
+  height: 60px;
+  display: flex;
+  align-items: center;
+  justify-content: space-around;
+}
+
 /*# sourceMappingURL=index.css.map */
