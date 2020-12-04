@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Ваша Корзина</title>
+</head>
+<body>
+	<h1>Корзина</h1>
+
+	{% for cart_product in cart_products %}
+		<p>{{ cart_product }}</p>
+	{% endfor %}
+</body>
+</html>

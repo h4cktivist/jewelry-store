@@ -202,6 +202,21 @@ def products():
 	return render_template('products.html', products=products)
 
 
+@app.route('/cart', methods=['POST', 'GET'])
+def cart():
+	if 'cart' not in session:
+		session['cart'] = []
+
+	if request.method == 'POST':
+		cart_prod_name = request.form['cart_prod_name']
+		session['cart'].append(cart_prod_name)
+		return redirect('/cart')
+
+	if request.method == 'GET':
+		cart_products = session['cart']
+		return render_template('cart.html', cart_products=cart_products)
+
+
 @bot.message_handler(commands=['start'])
 def start_message(message):
 	notification = NotificationInfo.query.order_by(NotificationInfo.id.desc()).all()
