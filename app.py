@@ -202,6 +202,13 @@ def products():
 	return render_template('products.html', products=products)
 
 
+@app.route('/products/<int:id>')
+def product_detail(id):
+	product = NewProduct.query.get(id)
+	product.product_img = b64encode(product.product_img).decode('utf-8')
+	return render_template('product_detail.html', product=product)
+
+
 @app.route('/cart', methods=['POST', 'GET'])
 def cart():
 	if 'cart' not in session:

@@ -7,8 +7,7 @@
 	{% if products|length > 0 %}
 
 		{% for el in products %}
-			<p>Название {{ el.product_name }}</p>
-			<p>Описание {{ el.product_description }}</p>
+			<a href="/products/{{ el.id }}"><p>Название {{ el.product_name }}</p></a>
 			<p>Изображение </p> <img width="200" height="200" src="data:;base64,{{ el.product_img }}">
 			<p>Цена: {{ el.product_cost }} тенге.</p>
 
