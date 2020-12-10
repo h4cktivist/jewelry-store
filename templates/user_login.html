@@ -2,13 +2,45 @@
 <html>
 <head>
 	<title>User Login</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<script type="text/javascript">
+		function open_auth(){
+				document.getElementById("form").classList.toggle('active');
+				document.getElementById("entrance_btn").style.display = "none"
+				document.getElementById("entrance").style.display = "none"
+			}
+	</script>
 </head>
 <body>
 
-	<form method="post">
-		<input type="text" name="user_name">
-		<input type="submit" name="Log In">
+	<div class="poloska">
+
+	</div>
+
+	<header>
+
+		<span id="headtxt">YUPIBUM</span>
+
+		<br>
+		<br>
+
+		<span id="headtxt_under">- украшения ручной работы, изготовленные с любовью.</span>
+
+	</header>
+	
+		
+	<p id="entrance">Добро пожаловать на страницу авторизации!</p>
+
+	<p><button id="entrance_btn" onclick="open_auth()">Войти</button></p>
+	
+	<div id="form">
+
+	<form  method="post">
+		<input id="nameput" type="text" name="user_name" placeholder="Ваше Имя"><br>
+		<input id="button" type="submit" name="Log In">
 	</form>
+
+	</div>
 
 </body>
 </html>
