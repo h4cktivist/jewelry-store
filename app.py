@@ -27,6 +27,17 @@ class Feedback(db.Model):
 		return '<Feedback %r>' % self.id
 
 
+class ProductFeedback(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	fb_id = db.Column(db.Integer)
+	user_name = db.Column(db.String, nullable=False)
+	text = db.Column(db.String(200), nullable=False)
+	date = db.Column(db.DateTime, default=datetime.utcnow)
+
+	def __repr__(self):
+		return '<ProductFeedback %r>' % self.id
+
+
 class NotificationInfo(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	name = db.Column(db.String(100), nullable=False)
@@ -202,11 +213,27 @@ def products():
 	return render_template('products.html', products=products)
 
 
-@app.route('/products/<int:id>')
+@app.route('/products/<int:id>', methods=['POST', 'GET'])
 def product_detail(id):
-	product = NewProduct.query.get(id)
-	product.product_img = b64encode(product.product_img).decode('utf-8')
-	return render_template('product_detail.html', product=product)
+	if request.method == 'POST':
+		fb_id = id
+		user_name = session['user_name']
+		text = request.form['text']
+
+		product_feedbacks = ProductFeedback(fb_id=fb_id, user_name=user_name, text=text)
+
+		try:
+			db.session.add(product_feedbacks)
+			db.session.commit()
+			return redirect('/products')
+		except:
+			return 'ERROR!'
+
+	if request.method == 'GET':
+		product = NewProduct.query.get(id)
+		feedbacks = ProductFeedback.query.order_by(ProductFeedback.date.desc()).all()
+		product.product_img = b64encode(product.product_img).decode('utf-8')
+		return render_template('product_detail.html', product=product, feedbacks=feedbacks)
 
 
 @app.route('/cart', methods=['POST', 'GET'])
