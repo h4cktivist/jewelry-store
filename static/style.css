@@ -1,0 +1,144 @@
+body{
+	background-color: #E5E5E5;
+	margin: 0;
+}
+
+header{
+	display: block;
+	text-align: center;
+}
+
+
+#headtxt{
+	margin: 0 auto;
+	position: relative;
+	top: 20px;
+	width: 100px;
+	border-bottom: 1px solid black;
+	font-family: Prociono;
+	font-size: 64px;
+	font-style: normal;
+	color: #417246;
+	animation-name: entrance_opacity;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+}
+
+
+
+#headtxt_under{
+	font-family: Segoe UI Emoji;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 19px;
+	letter-spacing: 0em;
+	text-align: center;
+	animation-name: entrance_opacity;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+}
+
+.poloska{
+	height: 38px;
+	background: #393F3A;
+}
+
+#entrance{
+	text-align: center;
+	position: relative;
+	top: 100px;
+	font-family: Prociono;
+	font-size: 50px;
+	animation-name: entrance_opacity;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	opacity: 0;
+}
+
+#entrance_btn{
+	display: block;
+	width: 130px;
+	height: 35px;
+	margin: 0 auto;
+	position: relative;
+	top: 130px;
+	border: solid 2px #393F3A;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	animation-name: entrance_opacity;
+	animation-duration: 3s;
+	animation-delay: 2s;
+	animation-fill-mode: forwards;
+	outline: none;
+	opacity: 0;
+	cursor: pointer;
+	background-color: #417246;
+}
+
+#entrance_btn:active{
+	top: 128px;
+}
+
+@keyframes entrance_opacity{
+	0%{opacity: 0;}
+	100%{opacity: 1;}
+}
+
+#form{
+	display: none;
+}
+
+#form.active{
+	display: block;
+	animation-name: entrance_opacity;
+	animation-duration: 2.3s;
+	animation-fill-mode: forwards;
+}
+
+form{
+	text-align: center;
+	position: relative;
+	top: 170px;
+}
+
+#nameput{
+	width: 200px;
+	height: 50px;
+	border: solid 2px #393F3A;
+	border-radius: 5px;
+	outline: none;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+}
+
+#nameput::placeholder{
+	color: black;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+}
+
+#button{
+	width: 120px;
+	height: 30px;
+	background-color: #417246;
+	border: solid 2px #393F3A;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	outline: none;
+	text-align: center;
+	position: relative;
+	top: 20px;
+	cursor: pointer;
+}
+
+#button:active{
+	top: 18px;
+}
