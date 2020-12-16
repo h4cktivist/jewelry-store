@@ -7,6 +7,7 @@
 		function open_auth(){
 				document.getElementById("form").classList.toggle('active');
 				document.getElementById("entrance_btn").style.display = "none"
+				document.getElementById("entrance_reg_btn").style.display = "none"
 				document.getElementById("entrance").style.display = "none"
 			}
 	</script>
@@ -32,12 +33,14 @@
 	<p id="entrance">Добро пожаловать на страницу авторизации!</p>
 
 	<p><button id="entrance_btn" onclick="open_auth()">Войти</button></p>
+	<p><button id="entrance_reg_btn" onclick="document.location='/registration'">Зарегистрироваться</button></p>
 	
 	<div id="form">
 
 	<form  method="post">
-		<input id="nameput" type="text" name="user_name" placeholder="Ваше Имя"><br>
-		<input id="button" type="submit" name="Log In">
+		<input id="nameput" type="text" name="username" placeholder="Введите имя пользователя"><br>
+		<input id="nameput" type="text" name="paswrd" placeholder="Введите пароль"><br>
+		<input id="button" type="submit" name="Войти">
 	</form>
 
 	</div>
