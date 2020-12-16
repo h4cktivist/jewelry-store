@@ -99,7 +99,7 @@ def registration():
 		try:
 			db.session.add(user_data)
 			db.session.commit()
-			return redirect('/')
+			return redirect('/user_login')
 		except:
 			return 'ERROR!'
 
@@ -118,7 +118,7 @@ def user_login():
 		for user in users:
 			if (entered_username == user.username) and (entered_paswrd == user.paswrd):
 				session['user_name'] = user.username
-				return redirect('/user_login')
+				return redirect('/')
 		else:
 			return 'Неверный логин или пароль. Обновите страницу и повторите попытку'
 
