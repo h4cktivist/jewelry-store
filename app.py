@@ -17,6 +17,16 @@ db = SQLAlchemy(app)
 bot = telebot.TeleBot('1345360965:AAEljL8AmCV6pTK7TFd5SkoYZqrrizEGLSA')
 
 
+class User(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	username = db.Column(db.String(20), nullable=False)
+	email = db.Column(db.String(50), nullable=False)
+	paswrd = db.Column(db.String, nullable=False)
+
+	def __repr__(self):
+		return '<User %r>' % self.id
+
+
 class Feedback(db.Model):
 	id = db.Column(db.Integer, primary_key=True)
 	feedback_name = db.Column(db.String(50), nullable=False)
@@ -25,6 +35,17 @@ class Feedback(db.Model):
 
 	def __repr__(self):
 		return '<Feedback %r>' % self.id
+
+
+class ProductFeedback(db.Model):
+	id = db.Column(db.Integer, primary_key=True)
+	fb_id = db.Column(db.Integer)
+	user_name = db.Column(db.String, nullable=False)
+	text = db.Column(db.String(200), nullable=False)
+	date = db.Column(db.DateTime, default=datetime.utcnow)
+
+	def __repr__(self):
+		return '<ProductFeedback %r>' % self.id
 
 
 class NotificationInfo(db.Model):
@@ -66,11 +87,41 @@ def index():
 		return render_template('index.html')
 
 
+@app.route('/registration', methods=['POST', 'GET'])
+def registration():
+	if request.method == 'POST':
+		username = request.form['username']
+		email = request.form['email']
+		paswrd = request.form['paswrd']
+
+		user_data = User(username=username, email=email, paswrd=paswrd)
+
+		try:
+			db.session.add(user_data)
+			db.session.commit()
+			return redirect('/user_login')
+		except:
+			return 'ERROR!'
+
+	else:
+		return render_template('registration.html')
+
+
 @app.route('/user_login', methods=['POST', 'GET'])
 def user_login():
 	if request.method == 'POST':
-		session['user_name'] = request.form['user_name']
-		return redirect('/')
+		entered_username = request.form['username']
+		entered_paswrd = request.form['paswrd']
+
+		users = User.query.all()
+
+		for user in users:
+			if (entered_username == user.username) and (entered_paswrd == user.paswrd):
+				session['user_name'] = user.username
+				return redirect('/')
+		else:
+			return 'Неверный логин или пароль. Обновите страницу и повторите попытку'
+
 	else:
 		return render_template('user_login.html')
 
@@ -200,6 +251,44 @@ def products():
 	for product in products:
 		product.product_img = b64encode(product.product_img).decode('utf-8')
 	return render_template('products.html', products=products)
+
+
+@app.route('/products/<int:id>', methods=['POST', 'GET'])
+def product_detail(id):
+	if request.method == 'POST':
+		fb_id = id
+		user_name = session['user_name']
+		text = request.form['text']
+
+		product_feedbacks = ProductFeedback(fb_id=fb_id, user_name=user_name, text=text)
+
+		try:
+			db.session.add(product_feedbacks)
+			db.session.commit()
+			return redirect('/products')
+		except:
+			return 'ERROR!'
+
+	if request.method == 'GET':
+		product = NewProduct.query.get(id)
+		feedbacks = ProductFeedback.query.order_by(ProductFeedback.date.desc()).all()
+		product.product_img = b64encode(product.product_img).decode('utf-8')
+		return render_template('product_detail.html', product=product, feedbacks=feedbacks)
+
+
+@app.route('/cart', methods=['POST', 'GET'])
+def cart():
+	if 'cart' not in session:
+		session['cart'] = []
+
+	if request.method == 'POST':
+		cart_prod_name = request.form['cart_prod_name']
+		session['cart'].append(cart_prod_name)
+		return redirect('/cart')
+
+	if request.method == 'GET':
+		cart_products = session['cart']
+		return render_template('cart.html', cart_products=cart_products)
 
 
 @bot.message_handler(commands=['start'])
