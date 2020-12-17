@@ -70,15 +70,6 @@ class NewProduct(db.Model):
 		return '<NewProduct %r>' % self.id
 
 
-def readImage(img_name):
-	try:
-		with open(img_name, 'rb') as file:
-			img = file.stream.read()
-		return img
-	except IOError:
-		print("ERROR!!")
-
-
 @app.route('/')
 def index():
 	if not 'user_name' in session:
