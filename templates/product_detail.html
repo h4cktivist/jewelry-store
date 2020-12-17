@@ -19,9 +19,9 @@
 
 {% for fb in feedbacks %}
 	{% if fb.fb_id == product.id %}
-		<p>{{ fb.name }}</p><br>
-		<p>{{ fb.text }}</p><br>
-		<p>{{ fb.date }}</p><br>
+		<p>{{ fb.user_name }}</p>
+		<p>{{ fb.text }}</p>
+		<p>{{ fb.date }}</p>
 	{% endif %}
 {% endfor %}
 
