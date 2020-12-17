@@ -5,7 +5,7 @@
 </head>
 <body>
 	<form method="post">
-		<input type="text" id="name" name="name" placeholder="Введите Ваше имя"><br>
+		<p>Ваше имя: {{ session['user_name'] }}</p>
 		<input type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"><br>
 		<input type="hidden" id="order" name="order" value="{{ session['cart'] }}"><br>
 		<p>Ваш заказ: </p>

@@ -1,20 +1,19 @@
 from datetime import datetime
-import sys
-import sqlite3 as lite
-from flask import Flask, render_template, url_for, request, redirect, session, escape
-from flask_sqlalchemy import SQLAlchemy
-import telebot
-from werkzeug.utils import secure_filename
 from base64 import b64encode
+from flask import Flask, render_template, url_for, request, redirect, session
+from flask_sqlalchemy import SQLAlchemy
+from flask_session import Session
+import sqlite3 as lite
+from werkzeug.utils import secure_filename
 
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
+app.config['SESSION_TYPE'] = 'filesystem'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///database.db'
 app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
-
-bot = telebot.TeleBot('1345360965:AAEljL8AmCV6pTK7TFd5SkoYZqrrizEGLSA')
+Session().init_app(app)
 
 
 class User(db.Model):
@@ -48,17 +47,17 @@ class ProductFeedback(db.Model):
         return '<ProductFeedback %r>' % self.id
 
 
-class NotificationInfo(db.Model):
+class Order(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(100), nullable=False)
     contact = db.Column(db.String(150), nullable=False)
     order = db.Column(db.String(150), nullable=False)
 
     def __repr__(self):
-        return '<NotificationInfo %r>' % self.id
+        return '<Order %r>' % self.id
 
 
-class NewProduct(db.Model):
+class Product(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     product_name = db.Column(db.String(100), nullable=False)
     product_description = db.Column(db.String(200), nullable=False)
@@ -67,7 +66,7 @@ class NewProduct(db.Model):
     product_cost = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
-        return '<NewProduct %r>' % self.id
+        return '<Product %r>' % self.id
 
 
 @app.route('/')
@@ -177,11 +176,11 @@ def feedback():
 @app.route('/order', methods=['POST', 'GET'])
 def order():
     if request.method == 'POST':
-        name = request.form['name']
+        name = session['user_name']
         contact = request.form['contact']
         order = request.form['order']
 
-        notification_data = NotificationInfo(name=name, contact=contact, order=order)
+        notification_data = Order(name=name, contact=contact, order=order)
 
         try:
             db.session.add(notification_data)
@@ -197,7 +196,7 @@ def order():
 @app.route('/orders')
 def orders():
     if 'logged_in' in session:
-        orders = NotificationInfo.query.order_by(NotificationInfo.id.desc()).all()
+        orders = Order.query.order_by(Order.id.desc()).all()
         return render_template('orders.html', orders=orders)
     else:
         return redirect('/admin_login')
@@ -212,14 +211,14 @@ def new_product_reg():
         file = request.files['product_img']
 
         if file:
-            img_name = secure_filename(file.filename)
+            secure_filename(file.filename)
             file.seek(0)
             product_img = file.read()
             product_img_binary = lite.Binary(product_img)
 
-        product_data = NewProduct(product_name=product_name, 
-            product_description=product_description, 
-            product_cost=product_cost, 
+        product_data = Product(product_name=product_name,
+            product_description=product_description,
+            product_cost=product_cost,
             product_img=product_img_binary)
 
         try:
@@ -238,7 +237,7 @@ def new_product_reg():
 
 @app.route('/products')
 def products():
-    products = NewProduct.query.order_by(NewProduct.product_date.desc()).all()
+    products = Product.query.order_by(Product.product_date.desc()).all()
     for product in products:
         product.product_img = b64encode(product.product_img).decode('utf-8')
     return render_template('products.html', products=products)
@@ -261,7 +260,7 @@ def product_detail(id):
             return 'ERROR!'
 
     if request.method == 'GET':
-        product = NewProduct.query.get(id)
+        product = Product.query.get(id)
         feedbacks = ProductFeedback.query.order_by(ProductFeedback.date.desc()).all()
         product.product_img = b64encode(product.product_img).decode('utf-8')
         return render_template('product_detail.html', product=product, feedbacks=feedbacks)
@@ -282,17 +281,5 @@ def cart():
         return render_template('cart.html', cart_products=cart_products)
 
 
-@bot.message_handler(commands=['start'])
-def start_message(message):
-    notification = NotificationInfo.query.order_by(NotificationInfo.id.desc()).all()
-    
-    for el in notification:
-        bot.send_message(message.chat.id, "Имя заказчика: " + el.name)
-        bot.send_message(message.chat.id, "Как с ним связаться: " + el.contact)
-        bot.send_message(message.chat.id, "Заказ: " + el.order)
-        bot.send_message(message.chat.id, "_______________________________________")
-
-
 if __name__ == "__main__":
     app.run(debug=True)
-    bot.polling()
