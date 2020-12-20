@@ -74,7 +74,10 @@ def index():
     if not 'user_name' in session:
         return redirect('/user_login')
     else:
-        return render_template('index.html')
+        products = Product.query.order_by(Product.product_date.desc()).all()
+        for product in products:
+            product.product_img = b64encode(product.product_img).decode('utf-8')
+        return render_template('index.html', products=products)
 
 
 @app.route('/registration', methods=['POST', 'GET'])

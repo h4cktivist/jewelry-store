@@ -17,6 +17,12 @@
 	<input type="submit" value="Отправить отзыв">
 </form>
 
+<br>
+<form method="post" action="/cart">
+	<input type="hidden" name="cart_prod_name" value="{{ product.product_name }}">
+	<input type="submit" value="Добавить в коризину">
+</form>
+
 {% for fb in feedbacks %}
 	{% if fb.fb_id == product.id %}
 		<p>{{ fb.user_name }}</p>

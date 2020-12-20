@@ -3,7 +3,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>Index</title>
+	<title>Главная</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 </head>
 <body>
@@ -17,7 +17,7 @@
 		</div>
 		<div class="login">
 			{% if session.user_name %}
-				You are logged as {{ session.user_name }} <a class="log" href="/user_logout">Log Out</a>
+				Вы вошли как {{ session.user_name }} <a class="log" href="/user_logout">Выйти</a>
 			{% else %}
 				 <a href="/user_login">Войти</a>
 			{% endif %}
@@ -47,100 +47,31 @@
 	</div>
 
 	<nav class="navigation">
-		<button class="active-button"><a href="#">ГЛАВНАЯ</a></button>
+		<button class="active-button"><a href="/">ГЛАВНАЯ</a></button>
 		<button class="button"><a href="#">О НАС</a></button>
-		<button class="button"><a href="#products">КАТАЛОГ</a></button>
+		<button class="button"><a href="/products">КАТАЛОГ</a></button>
 		<button class="button"><a href="#contacts">КОНТАКТЫ</a></button>
-		<button class="button"><a href="#">КОРЗИНА</a></button>
+		<button class="button"><a href="/cart">КОРЗИНА</a></button>
 	</nav>
 </div>
 
 
 <div class="products__wrapper">
 	<div class="products__cards" id="products">
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-1.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
+		{% for el in products %}
+			<a class="card" href="/products/{{ el.id }}">
+				<img class="card__image" width="261" height="262" src="data:;base64,{{ el.product_img }}">
+				<div class="card__content">
+					<div class="card__content__price">{{ el.product_cost }} тенге</div>
+					<div class="card__content__title">
+						<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
+					</div>
 				</div>
-			</div>
-		</a>
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-2.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-				</div>
-			</div>
-		</a>
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-3.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-				</div>
-			</div>
-		</a>
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-4.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-				</div>
-			</div>
-		</a>
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-5.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-				</div>
-			</div>
-		</a>
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-6.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-				</div>
-			</div>
-		</a>
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-1.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-				</div>
-			</div>
-		</a>
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-2.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-				</div>
-			</div>
-		</a>
-		<a class="card" href="#">
-			<img class="card__image" src="{{ url_for('static', filename='images/product-3.jpg') }}">
-			<div class="card__content">
-				<div class="card__content__price">1300 руб.</div>
-				<div class="card__content__title">
-					<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-				</div>
-			</div>
-		</a>
+			</a>
+		{% endfor %}
 	</div>
 </div>
+
 
 <footer class="footer" id="contacts">
 	<h2>YUPIBUM</h2>
