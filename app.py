@@ -284,5 +284,10 @@ def cart():
         return render_template('cart.html', cart_products=cart_products)
 
 
+@app.errorhandler(404)
+def not_found(e):
+    return render_template('404.html'), 404
+
+
 if __name__ == "__main__":
     app.run(debug=True)
