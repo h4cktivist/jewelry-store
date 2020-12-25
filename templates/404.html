@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<title>404: Не найдено</title>
+	<title>{% block title %} 404: Не найдено {% endblock %}</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -15,8 +15,12 @@
 		<span id="headtxt_under">- украшения ручной работы, изготовленные с любовью.</span>
 	</header>
 
+	{% block body %}
+
 	<p id="entrance">404: Страница не найдена!</p>
 	<p id="entrance">Похоже, страницы, на которую вы пытаетесь перейти, не существует.</p>
+
+	{% endblock %}
 
 </body>
 </html>

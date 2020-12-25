@@ -15,6 +15,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Session().init_app(app)
 
+DB_ERROR_PAGE = 'error.html'
+LOGIN_ERROR_PAGE = 'lg_error.html'
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -94,7 +97,7 @@ def registration():
             db.session.commit()
             return redirect('/user_login')
         except:
-            return 'ERROR!'
+            return render_template(DB_ERROR_PAGE)
 
     else:
         return render_template('registration.html')
@@ -113,7 +116,7 @@ def user_login():
                 session['user_name'] = user.username
                 return redirect('/')
         else:
-            return 'Неверный логин или пароль. Обновите страницу и повторите попытку'
+            return render_template(LOGIN_ERROR_PAGE)
 
     else:
         return render_template('user_login.html')
@@ -136,7 +139,7 @@ def admin_login():
                 session['logged_in'] = True
                 return redirect('/admin_page')
             else:
-                return "Wrond login and passsword!"
+                return render_template(LOGIN_ERROR_PAGE)
         else:
             if 'logged_in' in session:
                 return redirect('/admin_page')
@@ -169,7 +172,7 @@ def feedback():
             db.session.commit()
             return redirect('/feedback')
         except:
-            return 'ERROR!'
+            return render_template(DB_ERROR_PAGE)
 
     else:
         feedbacks = Feedback.query.order_by(Feedback.date.desc()).all()
@@ -190,7 +193,7 @@ def order():
             db.session.commit()
             return redirect('/order')
         except:
-            return 'ERROR!'
+            return render_template(DB_ERROR_PAGE)
 
     else:
         return render_template('order.html')
@@ -229,7 +232,7 @@ def new_product_reg():
             db.session.commit()
             return redirect('/new_product_reg')
         except:
-            return "ERROR!"
+            return render_template(DB_ERROR_PAGE)
 
     else:
         if 'logged_in' in session:
@@ -260,7 +263,7 @@ def product_detail(id):
             db.session.commit()
             return redirect('/products')
         except:
-            return 'ERROR!'
+            return render_template(DB_ERROR_PAGE)
 
     if request.method == 'GET':
         product = Product.query.get(id)
@@ -287,6 +290,7 @@ def cart():
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
+
 
 
 if __name__ == "__main__":
