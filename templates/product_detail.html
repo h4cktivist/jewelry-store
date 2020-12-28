@@ -33,33 +33,50 @@
 </div>
 
 
+<div class="main">
+	<div class="main_content">
 
-<div>
-	<h1>{{ product.product_name }}</h1>
+		<div class="image">
+			<img width="360" height="360" src="data:;base64,{{ product.product_img }}">
+		</div>
 
-	<p>{{ product.product_description }}</p>
-	<img width="200" height="200" src="data:;base64,{{ product.product_img }}">
-	<p>Цена: {{ product.product_cost }}</p>
 
-	<form method="post">
-		<input type="hidden" name="fb_id" value="product.id">
-		<input type="text" name="text"><br>
-		<input type="submit" value="Отправить отзыв">
-	</form>
+		<div class="product_description">
+			<h1 class="product_name">{{ product.product_name }}</h1>
 
-	<br>
-	<form method="post" action="/cart">
-		<input type="hidden" name="cart_prod_name" value="{{ product.product_name }}">
-		<input type="submit" value="Добавить в коризину">
-	</form>
+			<p class="product_info">{{ product.product_description }}</p>
 
-	{% for fb in feedbacks %}
-		{% if fb.fb_id == product.id %}
-			<p>{{ fb.user_name }}</p>
-			<p>{{ fb.text }}</p>
-			<p>{{ fb.date }}</p>
-		{% endif %}
-	{% endfor %}
+			<div class="product_price">Цена: {{ product.product_cost }}</div>
+
+			<form method="post" action="/cart" >
+				<input type="hidden" name="cart_prod_name" value="{{ product.product_name }}">
+				<input class="cart_button" type="submit" value="Добавить в коризину">
+			</form>
+		</div>
+
+		<br>
+	</div>
+
+	<div class="decoration_line"></div>
+
+	<div class="feedback">
+
+		<p>Отзывы</p>
+
+		<form method="post">
+			<input type="hidden" name="fb_id" value="product.id">
+			<input type="text" name="text"><br>
+			<input type="submit" value="Отправить отзыв">
+		</form>
+
+		{% for fb in feedbacks %}
+			{% if fb.fb_id == product.id %}
+				<p>{{ fb.user_name }}</p>
+				<p>{{ fb.text }}</p>
+				<p>{{ fb.date }}</p>
+			{% endif %}
+		{% endfor %}
+	</div>
 </div>
 
 <footer class="footer" id="contacts">
