@@ -45,6 +45,7 @@ class ProductFeedback(db.Model):
     user_name = db.Column(db.String, nullable=False)
     text = db.Column(db.String(200), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    image = db.Column(db.BLOB())
 
     def __repr__(self):
         return '<ProductFeedback %r>' % self.id
@@ -255,8 +256,18 @@ def product_detail(id):
         fb_id = id
         user_name = session['user_name']
         text = request.form['text']
+        image = request.files['image']
 
-        product_feedbacks = ProductFeedback(fb_id=fb_id, user_name=user_name, text=text)
+        if image:
+            secure_filename(image.filename)
+            image.seek(0)
+            image = image.read()
+            image = lite.Binary(image)
+
+            product_feedbacks = ProductFeedback(fb_id=fb_id, user_name=user_name, text=text, image=image)
+
+        else:
+            product_feedbacks = ProductFeedback(fb_id=fb_id, user_name=user_name, text=text)
 
         try:
             db.session.add(product_feedbacks)
@@ -268,7 +279,15 @@ def product_detail(id):
     if request.method == 'GET':
         product = Product.query.get(id)
         feedbacks = ProductFeedback.query.order_by(ProductFeedback.date.desc()).all()
+
         product.product_img = b64encode(product.product_img).decode('utf-8')
+
+        for feedback in feedbacks:
+            if feedback.image:
+                feedback.image = b64encode(feedback.image).decode('utf-8')
+            else:
+                pass
+
         return render_template('product_detail.html', product=product, feedbacks=feedbacks)
 
 

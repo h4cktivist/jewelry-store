@@ -1,2 +1,3 @@
 flask_session
 database.db
+__pycache__
