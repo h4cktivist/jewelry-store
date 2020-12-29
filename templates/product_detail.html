@@ -61,21 +61,34 @@
 
 	<div class="feedback">
 
-		<p>Отзывы</p>
+		<p class="feedback_title">Отзывы</p>
 
 		<form method="post">
 			<input type="hidden" name="fb_id" value="product.id">
-			<input type="text" name="text"><br>
-			<input type="submit" value="Отправить отзыв">
+			<input type="text" name="text" class="input_text">
+			<input type="submit" value="Отправить отзыв" class="input_button">
 		</form>
 
+
 		{% for fb in feedbacks %}
+			<div class="feedback_content">
 			{% if fb.fb_id == product.id %}
-				<p>{{ fb.user_name }}</p>
-				<p>{{ fb.text }}</p>
-				<p>{{ fb.date }}</p>
+				<div class="feedback_content_box">
+					<div class="feedback_content_name">{{ fb.user_name }}</div>
+					<div class="feedback_content_date">{{ fb.date }}</div>
+				</div>
+				<div class="feedback_content_text">{{ fb.text }}</div>
+
+				{% if fb.image %}
+				<img class="feedback_content_img" width="200" height="200" src="data:;base64,{{ fb.image }}">
+				{% endif %}
 			{% endif %}
+			</div>
 		{% endfor %}
+
+		<div>
+
+
 	</div>
 </div>
 
