@@ -75,13 +75,10 @@ class Product(db.Model):
 
 @app.route('/')
 def index():
-    if not 'user_name' in session:
-        return redirect('/user_login')
-    else:
-        products = Product.query.order_by(Product.product_date.desc()).all()
-        for product in products:
-            product.product_img = b64encode(product.product_img).decode('utf-8')
-        return render_template('index.html', products=products)
+    products = Product.query.order_by(Product.product_date.desc()).all()
+    for product in products:
+        product.product_img = b64encode(product.product_img).decode('utf-8')
+    return render_template('index.html', products=products)
 
 
 @app.route('/registration', methods=['POST', 'GET'])
@@ -162,22 +159,25 @@ def admin_page():
 
 @app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
-    if request.method == 'POST':
-        feedback_name = request.form['feedback_name']
-        feedback_text = request.form['feedback_text']
-
-        feedback_data = Feedback(feedback_name=feedback_name, feedback_text=feedback_text)
-
-        try:
-            db.session.add(feedback_data)
-            db.session.commit()
-            return redirect('/feedback')
-        except:
-            return render_template(DB_ERROR_PAGE)
-
+    if not 'user_name' in session:
+        return redirect('/user_login')
     else:
-        feedbacks = Feedback.query.order_by(Feedback.date.desc()).all()
-        return render_template('feedback.html', feedbacks=feedbacks)
+        if request.method == 'POST':
+            feedback_name = request.form['feedback_name']
+            feedback_text = request.form['feedback_text']
+
+            feedback_data = Feedback(feedback_name=feedback_name, feedback_text=feedback_text)
+
+            try:
+                db.session.add(feedback_data)
+                db.session.commit()
+                return redirect('/feedback')
+            except:
+                return render_template(DB_ERROR_PAGE)
+
+        else:
+            feedbacks = Feedback.query.order_by(Feedback.date.desc()).all()
+            return render_template('feedback.html', feedbacks=feedbacks)
 
 
 @app.route('/order', methods=['POST', 'GET'])
@@ -293,17 +293,20 @@ def product_detail(id):
 
 @app.route('/cart', methods=['POST', 'GET'])
 def cart():
-    if 'cart' not in session:
-        session['cart'] = []
+    if not 'user_name' in session:
+        return redirect('/user_login')
+    else:
+        if 'cart' not in session:
+            session['cart'] = []
 
-    if request.method == 'POST':
-        cart_prod_name = request.form['cart_prod_name']
-        session['cart'].append(cart_prod_name)
-        return redirect('/cart')
+        if request.method == 'POST':
+            cart_prod_name = request.form['cart_prod_name']
+            session['cart'].append(cart_prod_name)
+            return redirect('/cart')
 
-    if request.method == 'GET':
-        cart_products = session['cart']
-        return render_template('cart.html', cart_products=cart_products)
+        if request.method == 'GET':
+            cart_products = session['cart']
+            return render_template('cart.html', cart_products=cart_products)
 
 
 @app.errorhandler(404)
