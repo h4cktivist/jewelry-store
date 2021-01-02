@@ -295,15 +295,27 @@ def cart():
     else:
         if 'cart' not in session:
             session['cart'] = []
+            session['cart_cost'] = []
 
         if request.method == 'POST':
             cart_prod_name = request.form['cart_prod_name']
+            cart_prod_cost = request.form['cart_prod_cost']
+
             session['cart'].append(cart_prod_name)
+            session['cart_cost'].append(cart_prod_cost)
+
             return redirect('/cart')
 
         if request.method == 'GET':
             cart_products = session['cart']
-            return render_template('cart.html', cart_products=cart_products)
+            products_cost = session['cart_cost']
+
+            full_cost = sum((int(products_cost[i]) for i in range(0, int(len(products_cost)))))
+
+            return render_template('cart.html',
+                cart_products=cart_products,
+                products_cost=products_cost,
+                full_cost=full_cost)
 
 
 @app.errorhandler(404)

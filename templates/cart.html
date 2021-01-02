@@ -12,6 +12,12 @@
 			<p>{{ cart_product }}</p>
 		{% endfor %}
 
+		{% for product_cost in products_cost %}
+			<p>{{ product_cost }} тенге</p>
+		{% endfor %}
+
+		<p>Итого: {{ full_cost }}</p>
+
 		<a href="/order">Оформить заказ</a>
 
 	{% else %}
