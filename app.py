@@ -159,25 +159,22 @@ def admin_page():
 
 @app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
-    if not 'user_name' in session:
-        return redirect('/user_login')
+    if request.method == 'POST':
+        feedback_name = request.form['feedback_name']
+        feedback_text = request.form['feedback_text']
+
+        feedback_data = Feedback(feedback_name=feedback_name, feedback_text=feedback_text)
+
+        try:
+            db.session.add(feedback_data)
+            db.session.commit()
+            return redirect('/feedback')
+        except:
+            return render_template(DB_ERROR_PAGE)
+
     else:
-        if request.method == 'POST':
-            feedback_name = request.form['feedback_name']
-            feedback_text = request.form['feedback_text']
-
-            feedback_data = Feedback(feedback_name=feedback_name, feedback_text=feedback_text)
-
-            try:
-                db.session.add(feedback_data)
-                db.session.commit()
-                return redirect('/feedback')
-            except:
-                return render_template(DB_ERROR_PAGE)
-
-        else:
-            feedbacks = Feedback.query.order_by(Feedback.date.desc()).all()
-            return render_template('feedback.html', feedbacks=feedbacks)
+        feedbacks = Feedback.query.order_by(Feedback.date.desc()).all()
+        return render_template('feedback.html', feedbacks=feedbacks)
 
 
 @app.route('/order', methods=['POST', 'GET'])

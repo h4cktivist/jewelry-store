@@ -4,11 +4,18 @@
 	<title>Отзывы о нас</title>
 </head>
 <body>
-	<form method="post">
-		<input type="text" name="feedback_name"><br>
-		<input type="text" name="feedback_text"><br>
-		<input type="submit" value="Submit">
-	</form>
+
+	{% if session.user_name %}
+		<p>Ваше имя: {{ session.user_name }}</p>
+
+		<form method="post">
+			<input type="hidden" name="feedback_name" value="{{ session.user_name }}"><br>
+			<input type="text" name="feedback_text" placeholder="Введите текст отзыва"><br>
+			<input type="submit" value="Отправить отзыв">
+		</form>
+	{% else %}
+		<p>Вы должны войти, чтобы оставить отзыв.</p>
+	{% endif %}
 
 	{% if feedbacks|length > 0 %}
 
