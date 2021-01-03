@@ -10,7 +10,7 @@
 
 		<form method="post">
 			<input type="hidden" name="feedback_name" value="{{ session.user_name }}"><br>
-			<input type="text" name="feedback_text" placeholder="Введите текст отзыва"><br>
+			<textarea type="text" name="feedback_text" placeholder="Введите текст отзыва"></textarea><br>
 			<input type="submit" value="Отправить отзыв">
 		</form>
 	{% else %}

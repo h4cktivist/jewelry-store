@@ -24,7 +24,7 @@
 
 		<form method="POST" action="/order">
 			<input type="hidden" id="order" name="order" value="{{ session['cart'] }}"><br>
-			<input type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"><br>
+			<textarea type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"></textarea><br>
 			<input type="submit" value="Оформить заказ">
 		</form>
 

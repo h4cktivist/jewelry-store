@@ -266,7 +266,7 @@ def product_detail(id):
         try:
             db.session.add(product_feedbacks)
             db.session.commit()
-            return redirect('/products')
+            return redirect('/')
         except:
             return render_template(DB_ERROR_PAGE)
 

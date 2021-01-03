@@ -68,7 +68,7 @@
 		{% if session.user_name %}
 			<form enctype="multipart/form-data" method="post">
 				<input type="hidden" name="fb_id" value="product.id">
-				<input type="text" name="text" class="input_text" placeholder="Введите текст отзыва">
+				<textarea type="text" name="text" class="input_text" placeholder="Введите текст отзыва"></textarea>
 				<input type="file" name="image">
 				<input type="submit" value="Отправить отзыв" class="input_button">
 			</form>
