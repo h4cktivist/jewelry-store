@@ -8,6 +8,10 @@
 
 	{% if cart_products|length > 0 %}
 
+		{% for product_img in products_img %}
+			<img width="100" height="100" src="data:;base64,{{ product_img }}">
+		{% endfor %}
+
 		{% for cart_product in cart_products %}
 			<p>{{ cart_product }}</p>
 		{% endfor %}
