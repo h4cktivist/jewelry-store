@@ -22,7 +22,11 @@
 
 		<p>Итого: {{ full_cost }}</p>
 
-		<a href="/order">Оформить заказ</a>
+		<form method="POST" action="/order">
+			<input type="hidden" id="order" name="order" value="{{ session['cart'] }}"><br>
+			<input type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"><br>
+			<input type="submit" value="Оформить заказ">
+		</form>
 
 	{% else %}
 		<p>В Вашей корзине пока нет товаров.</p>

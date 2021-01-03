@@ -184,17 +184,14 @@ def order():
         contact = request.form['contact']
         order = request.form['order']
 
-        notification_data = Order(name=name, contact=contact, order=order)
+        order_info = Order(name=name, contact=contact, order=order)
 
         try:
-            db.session.add(notification_data)
+            db.session.add(order_info)
             db.session.commit()
-            return redirect('/order')
+            return redirect('/cart')
         except:
             return render_template(DB_ERROR_PAGE)
-
-    else:
-        return render_template('order.html')
 
 
 @app.route('/orders')
