@@ -177,7 +177,7 @@ def feedback():
         return render_template('feedback.html', feedbacks=feedbacks)
 
 
-@app.route('/order', methods=['POST', 'GET'])
+@app.route('/order', methods=['POST'])
 def order():
     if request.method == 'POST':
         name = session['user_name']
