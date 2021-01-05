@@ -70,6 +70,7 @@ $ python app.py
 - /user_login (user_login.html)
 - /feedback (feedback.html)
 - /order (order.html)
+- /Tut menya nikto ne nayder(gitmonogoose.html)
 - /new_product_reg (new_product_reg.html)
 - /ordres (orders.html)
 - /products (products.html)
@@ -107,7 +108,3 @@ $ python app.py
 Так как разработка проекта ведется несколькими разработчиками, целесообразно будет использовать систему контроля версий. Мы возьмем Git. Я бы настоятельно рекомендовал ознакомиться с основами его работы в этом [курсе](https://www.youtube.com/playlist?list=PL0lO_mIqDDFUesRNkeg46TDd5I6r7p2PI). (З.Ы: Дударь, где деньги за рекламу?)
 
 Надеюсь, данный гайд поможет вам в разработке. Всем добра и кода без багов. С уважением, h4cktivist.
-
-<br>
-Тут был Антоша
-<br>И тут он тоже был
