@@ -15,6 +15,9 @@ app.config['SQLALCHEMY_TRACK_MODIFICATIONS'] = False
 db = SQLAlchemy(app)
 Session().init_app(app)
 
+DB_ERROR_PAGE = 'error.html'
+LOGIN_ERROR_PAGE = 'lg_error.html'
+
 
 class User(db.Model):
     id = db.Column(db.Integer, primary_key=True)
@@ -42,6 +45,7 @@ class ProductFeedback(db.Model):
     user_name = db.Column(db.String, nullable=False)
     text = db.Column(db.String(200), nullable=False)
     date = db.Column(db.DateTime, default=datetime.utcnow)
+    image = db.Column(db.BLOB())
 
     def __repr__(self):
         return '<ProductFeedback %r>' % self.id
@@ -71,13 +75,10 @@ class Product(db.Model):
 
 @app.route('/')
 def index():
-    if not 'user_name' in session:
-        return redirect('/user_login')
-    else:
-        products = Product.query.order_by(Product.product_date.desc()).all()
-        for product in products:
-            product.product_img = b64encode(product.product_img).decode('utf-8')
-        return render_template('index.html', products=products)
+    products = Product.query.order_by(Product.product_date.desc()).all()
+    for product in products:
+        product.product_img = b64encode(product.product_img).decode('utf-8')
+    return render_template('index.html', products=products)
 
 
 @app.route('/registration', methods=['POST', 'GET'])
@@ -94,7 +95,7 @@ def registration():
             db.session.commit()
             return redirect('/user_login')
         except:
-            return 'ERROR!'
+            return render_template(DB_ERROR_PAGE)
 
     else:
         return render_template('registration.html')
@@ -113,7 +114,7 @@ def user_login():
                 session['user_name'] = user.username
                 return redirect('/')
         else:
-            return 'Неверный логин или пароль. Обновите страницу и повторите попытку'
+            return render_template(LOGIN_ERROR_PAGE)
 
     else:
         return render_template('user_login.html')
@@ -136,7 +137,7 @@ def admin_login():
                 session['logged_in'] = True
                 return redirect('/admin_page')
             else:
-                return "Wrond login and passsword!"
+                return render_template(LOGIN_ERROR_PAGE)
         else:
             if 'logged_in' in session:
                 return redirect('/admin_page')
@@ -169,7 +170,7 @@ def feedback():
             db.session.commit()
             return redirect('/feedback')
         except:
-            return 'ERROR!'
+            return render_template(DB_ERROR_PAGE)
 
     else:
         feedbacks = Feedback.query.order_by(Feedback.date.desc()).all()
@@ -183,17 +184,14 @@ def order():
         contact = request.form['contact']
         order = request.form['order']
 
-        notification_data = Order(name=name, contact=contact, order=order)
+        order_info = Order(name=name, contact=contact, order=order)
 
         try:
-            db.session.add(notification_data)
+            db.session.add(order_info)
             db.session.commit()
-            return redirect('/order')
+            return redirect('/cart')
         except:
-            return 'ERROR!'
-
-    else:
-        return render_template('order.html')
+            return render_template(DB_ERROR_PAGE)
 
 
 @app.route('/orders')
@@ -229,7 +227,7 @@ def new_product_reg():
             db.session.commit()
             return redirect('/new_product_reg')
         except:
-            return "ERROR!"
+            return render_template(DB_ERROR_PAGE)
 
     else:
         if 'logged_in' in session:
@@ -252,41 +250,80 @@ def product_detail(id):
         fb_id = id
         user_name = session['user_name']
         text = request.form['text']
+        image = request.files['image']
 
-        product_feedbacks = ProductFeedback(fb_id=fb_id, user_name=user_name, text=text)
+        if image:
+            secure_filename(image.filename)
+            image.seek(0)
+            image = image.read()
+            image = lite.Binary(image)
+
+            product_feedbacks = ProductFeedback(fb_id=fb_id, user_name=user_name, text=text, image=image)
+
+        else:
+            product_feedbacks = ProductFeedback(fb_id=fb_id, user_name=user_name, text=text)
 
         try:
             db.session.add(product_feedbacks)
             db.session.commit()
-            return redirect('/products')
+            return redirect('/')
         except:
-            return 'ERROR!'
+            return render_template(DB_ERROR_PAGE)
 
     if request.method == 'GET':
         product = Product.query.get(id)
         feedbacks = ProductFeedback.query.order_by(ProductFeedback.date.desc()).all()
+
         product.product_img = b64encode(product.product_img).decode('utf-8')
+
+        for feedback in feedbacks:
+            if feedback.image:
+                feedback.image = b64encode(feedback.image).decode('utf-8')
+            else:
+                pass
+
         return render_template('product_detail.html', product=product, feedbacks=feedbacks)
 
 
 @app.route('/cart', methods=['POST', 'GET'])
 def cart():
-    if 'cart' not in session:
-        session['cart'] = []
+    if not 'user_name' in session:
+        return redirect('/user_login')
+    else:
+        if 'cart' not in session:
+            session['cart'] = []
+            session['cart_cost'] = []
+            session['cart_img'] = []
 
-    if request.method == 'POST':
-        cart_prod_name = request.form['cart_prod_name']
-        session['cart'].append(cart_prod_name)
-        return redirect('/cart')
+        if request.method == 'POST':
+            cart_prod_name = request.form['cart_prod_name']
+            cart_prod_cost = request.form['cart_prod_cost']
+            cart_prod_image = request.form['cart_prod_image']
 
-    if request.method == 'GET':
-        cart_products = session['cart']
-        return render_template('cart.html', cart_products=cart_products)
+            session['cart'].append(cart_prod_name)
+            session['cart_cost'].append(cart_prod_cost)
+            session['cart_img'].append(cart_prod_image)
+
+            return redirect('/cart')
+
+        if request.method == 'GET':
+            cart_products = session['cart']
+            products_cost = session['cart_cost']
+            products_img = session['cart_img']
+
+            full_cost = sum((int(products_cost[i]) for i in range(0, int(len(products_cost)))))
+
+            return render_template('cart.html',
+                cart_products=cart_products,
+                products_cost=products_cost,
+                full_cost=full_cost,
+                products_img=products_img)
 
 
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
+
 
 
 if __name__ == "__main__":
