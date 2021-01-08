@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Регистрация</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 </head>
 <body>
@@ -22,16 +23,19 @@
 	</header>
 	
 		
-	<p id="entrance">Добро пожаловать на страницу регистрации!</p>
-	
+	<p id="reg_entrance">Регистрация</p>
+
 	<div id="regform">
-		<form method="post">
-			<input id="nameput" type="text" name="username" placeholder="Введите имя пользователя"><br>
-			<input id="nameput" type="text" name="email" placeholder="Введите электронную почту"><br>
-			<input id="nameput" type="text" name="paswrd" placeholder="Введите пароль"><br>
-			<input id="regbutton" type="submit" value="Зарегистрироваться">
-		</form> 
-	</div>
+
+	<form  method="post">
+		<input id="reg_nameput" type="text" name="username" placeholder="Введите имя пользователя"><br>
+		<input id="reg_nameput" type="text" name="email" placeholder="Введите электронную почту"><br>
+		<input id="reg_nameput" type="text" name="paswrd" placeholder="Введите пароль"><br>
+		<input id="regbutton" type="submit" value="Зарегистрироваться">
+	</form>
+	
+ 	</div>
 
 </body>
+
 </html>

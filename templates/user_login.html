@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Вход/Регистрация</title>
+	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
 	<script type="text/javascript">
 		function open_auth(){
@@ -9,6 +10,8 @@
 				document.getElementById("entrance_btn").style.display = "none"
 				document.getElementById("entrance_reg_btn").style.display = "none"
 				document.getElementById("entrance").style.display = "none"
+				document.getElementById("auth_entrance").style.display = "block"
+				document.getElementById("entrance").innerHTML="Вход";
 			}
 	</script>
 </head>
@@ -31,6 +34,7 @@
 	
 		
 	<p id="entrance">Добро пожаловать на страницу авторизации!</p>
+	<p id="auth_entrance">Войти</p>
 
 	<p><button id="entrance_btn" onclick="open_auth()">Войти</button></p>
 	<p><button id="entrance_reg_btn" onclick="document.location='/registration'">Зарегистрироваться</button></p>

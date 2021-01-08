@@ -2,8 +2,28 @@
 <html>
 <head>
 	<title>Отзывы о нас</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='feedback_style.css') }}">
+	<meta charset="UTF-8">
 </head>
 <body>
+
+	<header class="header__panel">
+		<div class="wrapper">
+			<div class="social">
+				<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/vk-icon.png') }}"></a></div>
+				<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/google-icon.png') }}"></a></div>
+				<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
+			</div>
+			<div class="login">
+				{% if session.user_name %}
+					<span>Вы вошли как <i>{{ session.user_name }}</i></span> <a class="log" href="/user_logout">Выйти</a>
+				{% else %}
+					 <a href="/user_login">Войти</a>
+				{% endif %}
+			</div>
+		</div>
+	</header>
 
 	{% if session.user_name %}
 		<p>Ваше имя: {{ session.user_name }}</p>
@@ -28,6 +48,18 @@
 	{% else %}
 		<p>Здесь пока нет отзывов</p>
 	{% endif %}
+
+	<footer class="footer" id="contacts">
+	<h2>YUPIBUM</h2>
+	<div class="decoration__line"></div>
+	<span>- украшения ручной работы,</span>
+	<span> изготовленные с любовью.</span>
+	<div class="social">
+		<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/vk-icon.png') }}"></a></div>
+		<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/google-icon.png') }}"></a></div>
+		<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
+	</div>
+	</footer>
 
 </body>
 </html>
