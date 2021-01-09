@@ -1,0 +1,106 @@
+body{
+	background-color: #E5E5E5;
+	margin: 0;
+	cursor: pointer;
+	overflow-x:hidden;
+}
+
+header{
+	display: block;
+	text-align: center;
+}
+
+#fb_form{
+	margin: 0 auto;
+	text-align: center;
+	cursor: text;
+}
+
+#name, #text_form, #sub_button, #user_name, #feedback{
+	font-size: 20px;
+	font-family: Prociono;
+	font-style: normal;
+	position: relative;
+	top: 10px;
+	text-align: center;
+}
+
+#text_form{
+	outline: none;
+	border: solid 2px #393F3A;
+	border-radius: 2px;
+}
+
+textarea{
+  	min-height: 50px;
+  	height: 100px;
+  	max-height: 150px;
+  	min-width: 200px;
+  	width: 100px;
+  	max-width: 400px;
+}
+
+
+#sub_button{
+	background: #417246;
+	border: solid 2px #393F3A;
+  	border-radius: 10px;
+  	color: #E5E5E5;
+  	outline: none;
+  	width: 200px;
+  	height: 40px;
+  	top: 14px;
+}
+
+#sub_button:active{
+	top: 15px;
+	cursor: pointer;
+}
+
+#feedback{
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#fb_ready{
+	margin: 0 auto;
+	background: #E5E5E5;
+	border: solid 2px #393F3A;
+  	border-radius: 10px;
+  	margin-bottom: 20px;
+  	min-width: 0px;
+  	max-width: 50%;
+  	overflow-wrap: break-word;
+}
+
+#otziv{
+	margin-right: 5px;
+	margin-left: 5px;
+}
+
+#fb_else{
+	text-align: center;
+	font-family: Prociono;
+	font-size: 45px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+}
+
+#fb_else span:hover{
+	animation-name: color_change;
+	animation-duration: 10s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+}
+
+@keyframes color_change{
+	14%{color: red;}
+	28%{color: orange;}
+	44%{color: yellow;}
+	57%{color: green;}
+	71%{color: lightblue;}
+	85%{color: blue;}
+	100%{color: purple;}
+}
+

@@ -57,6 +57,33 @@ header{
 	opacity: 0;
 }
 
+#reg_entrance{
+	text-align: center;
+	position: relative;
+	top: 10px;
+	font-family: Prociono;
+	font-size: 45px;
+	animation-name: entrance_opacity;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	opacity: 0;
+}
+
+#auth_entrance{
+	display: none;
+	text-align: center;
+	position: relative;
+	top: 10px;
+	font-family: Prociono;
+	font-size: 45px;
+	animation-name: entrance_opacity;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	animation-delay: 0s;
+	opacity: 0;
+}
+
 #entrance_btn{
 	display: block;
 	width: 130px;
@@ -128,7 +155,7 @@ header{
 form{
 	text-align: center;
 	position: relative;
-	top: 170px;
+	top: 30px;
 }
 
 #nameput{
@@ -140,9 +167,29 @@ form{
 	text-align: center;
 	font-family: Prociono;
 	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#reg_nameput{
+	width: 400px;
+	height: 50px;
+	border: solid 2px #393F3A;
+	border-radius: 5px;
+	outline: none;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+	margin-bottom: 10px;
 }
 
 #nameput::placeholder{
+	color: black;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+}
+
+#reg_nameput::placeholder{
 	color: black;
 	text-align: center;
 	font-family: Prociono;
@@ -191,7 +238,6 @@ form{
 }
 
 #regform {
-	display: block;
 	animation-name: entrance_opacity;
 	animation-duration: 3s;
 	animation-fill-mode: forwards;

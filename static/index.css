@@ -37,13 +37,17 @@ body {
   color: #ECE0E0;
   font-size: 14px;
   font-family: sans-serif;
+  margin-right: 5px;
+}
+.login span{
+  margin-right: 30px;
 }
 .login a {
   color: white;
   text-decoration: none;
 }
 .login a:hover {
-  font-weight: bolder;
+  color: #228751;
 }
 
 .image-wrapper {
