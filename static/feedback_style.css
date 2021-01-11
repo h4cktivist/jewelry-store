@@ -1,7 +1,7 @@
 body{
 	background-color: #E5E5E5;
 	margin: 0;
-	cursor: pointer;
+	cursor: default;
 	overflow-x:hidden;
 }
 
@@ -13,7 +13,7 @@ header{
 #fb_form{
 	margin: 0 auto;
 	text-align: center;
-	cursor: text;
+	cursor: default;
 }
 
 #name, #text_form, #sub_button, #user_name, #feedback{
@@ -25,10 +25,15 @@ header{
 	text-align: center;
 }
 
+#name{
+	cursor: text;
+}
+
 #text_form{
 	outline: none;
 	border: solid 2px #393F3A;
 	border-radius: 2px;
+	cursor: text;
 }
 
 textarea{
@@ -50,6 +55,7 @@ textarea{
   	width: 200px;
   	height: 40px;
   	top: 14px;
+  	cursor: pointer;
 }
 
 #sub_button:active{
@@ -92,6 +98,16 @@ textarea{
 	animation-fill-mode: forwards;
 	animation-iteration-count: infinite;
 	animation-direction: alternate;
+	cursor: pointer;
+}
+
+i:hover{
+	animation-name: color_change;
+	animation-duration: 15s;
+	animation-fill-mode: forwards;
+	animation-iteration-count: infinite;
+	animation-direction: alternate;
+	cursor: pointer;
 }
 
 @keyframes color_change{
