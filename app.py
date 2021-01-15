@@ -320,6 +320,12 @@ def cart():
                 products_img=products_img)
 
 
+@app.route('/cart_clear')
+def cart_clear():
+    session.pop('cart')
+    return redirect('/cart')
+
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
