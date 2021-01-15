@@ -189,6 +189,7 @@ def order():
         try:
             db.session.add(order_info)
             db.session.commit()
+            session.pop('cart')
             return redirect('/cart')
         except:
             return render_template(DB_ERROR_PAGE)
