@@ -6,10 +6,33 @@
 <body>
 	<h1>Корзина</h1>
 
-	{% for cart_product in cart_products %}
-		<p>{{ cart_product }}</p>
-	{% endfor %}
+	{% if cart_products|length > 0 %}
 
-	<a href="/order">Оформить заказ</a>
+		{% for product_img in products_img %}
+			<img width="100" height="100" src="data:;base64,{{ product_img }}">
+		{% endfor %}
+
+		{% for cart_product in cart_products %}
+			<p>{{ cart_product }}</p>
+		{% endfor %}
+
+		{% for product_cost in products_cost %}
+			<p>{{ product_cost }} тенге</p>
+		{% endfor %}
+
+		<p>Итого: {{ full_cost }}</p>
+
+		<form method="POST" action="/order">
+			<input type="hidden" id="order" name="order" value="{{ session['cart'] }}"><br>
+			<textarea type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"></textarea><br>
+			<input type="submit" value="Оформить заказ">
+		</form>
+
+		<a href="/cart_clear">Очистить корзину</a>
+
+	{% else %}
+		<p>В Вашей корзине пока нет товаров.</p>
+
+	{% endif %}
 </body>
 </html>

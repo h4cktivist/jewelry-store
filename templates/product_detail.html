@@ -1,35 +1,117 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
 <head>
+	<meta charset="UTF-8">
 	<title>{{ product.product_name }}</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='product_detail.css') }}">
 </head>
 <body>
- 
-<h1>{{ product.product_name }}</h1>
 
-<p>{{ product.product_description }}</p>
-<p>Изображение </p> <img width="200" height="200" src="data:;base64,{{ product.product_img }}">
-<p>Цена: {{ product.product_cost }}</p>
+<header class="header__panel">
+	<div class="wrapper">
+		<div class="social">
+			<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/vk-icon.png') }}"></a></div>
+			<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/google-icon.png') }}"></a></div>
+			<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
+		</div>
+	</div>
+</header>
 
-<form method="post">
-	<input type="hidden" name="fb_id" value="product.id">
-	<input type="text" name="text"><br>
-	<input type="submit" value="Отправить отзыв">
-</form>
+<div class="image_wrapper">
+	<div class="description">
+		<h2>YUPIBUM</h2>
+		<span>- украшения ручной работы,</span>
+		<span>изготовленные с любовью.</span>
+	</div>
+	<nav class="navigation">
+		<button class="button" onclick="window.location.href = '/';"><a href="/">ГЛАВНАЯ</a></button>
+		<button class="button" onclick="window.location.href = '#';"><a href="#">О НАС</a></button>
+		<button class="button" onclick="window.location.href = '/products';"><a href="/products">КАТАЛОГ</a></button>
+		<button class="button" onclick="window.location.href = '#';"><a href="#contacts">КОНТАКТЫ</a></button>
+		<button class="button" onclick="window.location.href = '/cart';"><a href="/cart">КОРЗИНА</a></button>
+	</nav>
+</div>
 
-<br>
-<form method="post" action="/cart">
-	<input type="hidden" name="cart_prod_name" value="{{ product.product_name }}">
-	<input type="submit" value="Добавить в коризину">
-</form>
 
-{% for fb in feedbacks %}
-	{% if fb.fb_id == product.id %}
-		<p>{{ fb.user_name }}</p>
-		<p>{{ fb.text }}</p>
-		<p>{{ fb.date }}</p>
-	{% endif %}
-{% endfor %}
+<div class="main">
+	<div class="main_content">
+
+		<div class="image">
+			<img width="360" height="360" src="data:;base64,{{ product.product_img }}">
+		</div>
+
+
+		<div class="product_description">
+			<h1 class="product_name">{{ product.product_name }}</h1>
+
+			<p class="product_info">{{ product.product_description }}</p>
+
+			<div class="product_price">Цена: {{ product.product_cost }}</div>
+
+			<form method="post" action="/cart" >
+				<input type="hidden" name="cart_prod_name" value="{{ product.product_name }}">
+				<input type="hidden" name="cart_prod_cost" value="{{ product.product_cost }}">
+				<input type="hidden" name="cart_prod_image" value="{{ product.product_img }}">
+				<input class="cart_button" type="submit" value="Добавить в коризину">
+			</form>
+		</div>
+
+		<br>
+	</div>
+
+	<div class="decoration_line"></div>
+
+	<div class="feedback">
+
+		<p class="feedback_title">Отзывы</p>
+
+		{% if session.user_name %}
+			<form enctype="multipart/form-data" method="post">
+				<input type="hidden" name="fb_id" value="product.id">
+				<textarea type="text" name="text" class="input_text" placeholder="Введите текст отзыва"></textarea>
+				<input type="file" name="image">
+				<input type="submit" value="Отправить отзыв" class="input_button">
+			</form>
+		{% else %}
+			<br>
+			<p>Вы дожны войти, чтобы оставить отзыв. <a href="/user_login">Войти</a></p>
+		{% endif %}
+
+
+		{% for fb in feedbacks %}
+			<div class="feedback_content">
+			{% if fb.fb_id == product.id %}
+				<div class="feedback_content_box">
+					<div class="feedback_content_name">{{ fb.user_name }}</div>
+					<div class="feedback_content_date">{{ fb.date }}</div>
+				</div>
+				<div class="feedback_content_text">{{ fb.text }}</div>
+
+				{% if fb.image %}
+				<img class="feedback_content_img" width="200" height="200" src="data:;base64,{{ fb.image }}">
+				{% endif %}
+			{% endif %}
+			</div>
+		{% endfor %}
+
+		<div>
+
+
+	</div>
+</div>
+
+<footer class="footer" id="contacts">
+	<h2>YUPIBUM</h2>
+	<div class="decoration__line"></div>
+	<span>- украшения ручной работы,</span>
+	<span> изготовленные с любовью.</span>
+	<div class="social">
+		<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/vk-icon.png') }}"></a></div>
+		<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/google-icon.png') }}"></a></div>
+		<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
+	</div>
+</footer>
+
 
 </body>
 </html>
