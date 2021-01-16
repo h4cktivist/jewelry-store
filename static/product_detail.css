@@ -73,6 +73,7 @@ body {
 .navigation .button:hover {
   background: #788E7B;
   transition-duration: 0.5s;
+  cursor: pointer;
 }
 .navigation a {
   font-size: 14px;
@@ -151,6 +152,7 @@ body {
   background: #393F3A;
   color: #ECE0E0;
   transition-duration: 0.5s;
+  cursor: pointer;
 }
 
 .decoration_line {
@@ -163,19 +165,29 @@ body {
   margin: 20px;
   font-family: sans-serif;
 }
+.feedback_content_text {
+  overflow-wrap: break-word;
+}
 .feedback_title {
   font-weight: 200;
   font-size: 30px;
   color: #484848;
 }
+.feedback_flex {
+  display: flex;
+  align-items: center;
+}
 .feedback .input_text {
-  width: 500px;
+  width: 600px;
+  height: 60px;
   font-size: 13px;
-  padding: 6px 0 4px 10px;
   border: 1px solid #cecece;
   background: #F6F6f6;
   border-radius: 8px;
   outline: none;
+}
+.feedback .input-buttons-block {
+  padding: 6px 0 4px 10px;
 }
 .feedback .input_button {
   width: 150px;
@@ -190,6 +202,7 @@ body {
 .feedback .input_button:hover {
   background: #788E7B;
   transition-duration: 0.5s;
+  cursor: pointer;
 }
 
 .feedback_content {

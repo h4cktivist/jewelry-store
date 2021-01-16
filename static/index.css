@@ -37,17 +37,13 @@ body {
   color: #ECE0E0;
   font-size: 14px;
   font-family: sans-serif;
-  margin-right: 5px;
-}
-.login span{
-  margin-right: 30px;
 }
 .login a {
   color: white;
   text-decoration: none;
 }
 .login a:hover {
-  color: #228751;
+  color: #788E7B;
 }
 
 .image-wrapper {
@@ -135,12 +131,15 @@ body {
 .navigation .button:hover {
   background: #485e4a;
   transition-duration: 0.5s;
+  cursor: pointer;
 }
 .navigation .active-button {
   width: 200px;
   height: 40px;
   background: #393F3A;
   border-radius: 10px;
+  outline: none;
+  border: none;
 }
 .navigation a {
   font-size: 14px;
