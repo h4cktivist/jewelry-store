@@ -2,6 +2,7 @@
 <html>
 <head>
 	<title>Ваша Корзина</title>
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
 	<h1>Корзина</h1>
@@ -27,6 +28,8 @@
 			<textarea type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"></textarea><br>
 			<input type="submit" value="Оформить заказ">
 		</form>
+
+		<a href="/cart_clear">Очистить корзину</a>
 
 	{% else %}
 		<p>В Вашей корзине пока нет товаров.</p>

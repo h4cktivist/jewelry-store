@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Главная</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
 
@@ -27,10 +28,10 @@
 
 <div class="image-wrapper">
 	<div class="search">
-		<form name="test" method="post" action="input1.php">
-			<input class="input-search" type="text" placeholder="Поиск товара по категории">
+		<form name="test" method="post" action="/search">
+			<input class="input-search" type="text" name="search_prod" placeholder="Поиск товара по категории">
+			<button class="button-search" type="submit">Поиск</button>
 		</form>
-		<button class="button-search">Поиск</button>
 	</div>
 
 	<div class="description">
