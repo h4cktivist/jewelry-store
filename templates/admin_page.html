@@ -3,10 +3,19 @@
 <head>
 	<title>Страница администратора</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin.css') }}">
 </head>
 <body>
-	<h1>Страница администратора</h1>>
+
+	<div class="poloska"></div>
+	<h1>Страница администратора</h1>
+
+
+
 	<a href="/new_product_reg">Регистрация нового продукта</a>
+	<br>
 	<a href="/orders">Просмотр заказов</a>
+
+
 </body>
 </html>

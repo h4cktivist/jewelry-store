@@ -1,0 +1,83 @@
+body{
+	background-color: #E5E5E5;
+	margin: 0;
+	cursor: default;
+	overflow-x: hidden;
+}
+
+header{
+	display: block;
+	text-align: center;
+}
+
+.poloska{
+	height: 38px;
+	background: #393F3A;
+}
+
+form{
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+	top: 130px;
+}
+
+input{
+	margin-bottom: 20px;
+	width: 400px;
+	height: 50px;
+	border: solid 2px #393F3A;
+	border-radius: 5px;
+	outline: none;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#entrance{
+	text-align: center;
+	position: relative;
+	top: 100px;
+	font-family: Prociono;
+	font-size: 50px;
+	animation-name: entrance_opacity;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	opacity: 1;
+}
+
+#button{
+	width: 120px;
+	height: 30px;
+	background-color: #417246;
+	border: solid 2px #393F3A;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	outline: none;
+	text-align: center;
+	position: relative;
+	top: 20px;
+	cursor: pointer;
+}
+
+#button:active{
+	top: 18px;
+}
+
+h1{
+	text-align: center;
+}
+
+
+a{
+	font-size: 20px;
+	font-family: Prociono;
+	font-style: normal;
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+}
