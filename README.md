@@ -64,15 +64,16 @@ $ python app.py
  
 
  Ссылки, доступные для посещения:
-- / (index.html)
-- /admin_login (admin_login.html)
-- /admin_page (admin_page.html)
-- /user_login (user_login.html)
-- /feedback (feedback.html)
-- /order (order.html)
-- /new_product_reg (new_product_reg.html)
-- /ordres (orders.html)
+- / (index.html) T
+- /admin_login (admin_login.html) U
+- /admin_page (admin_page.html) T
+- /user_login (user_login.html) B
+- /feedback (feedback.html) I
+- /order (order.html) L
+- /new_product_reg (new_product_reg.html) Y
+- /ordres (orders.html) A
 - /products (products.html)
+- /в Сибирь, но сейчас недоступна из за распада СССР, ждите новый
 
 Ну вот и все, данными дейстивиями вы смогли запустить данный проект на своем компьютере и можете приступать к разработке. О ее нюансах речь пойдет в другом гайде.
 
@@ -81,6 +82,7 @@ $ python app.py
 
 ### Расположение файлов
 Здесь все предельно просто:
+- обычно они располагаются та твоём компутере
 - .html файлы располагаются в папке templates, которая уже создана в данном репозитории;
 - .css, .js файлы и картинки располагаются в папке static, которую необходимо будет создать.
 

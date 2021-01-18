@@ -177,7 +177,7 @@ def feedback():
         return render_template('feedback.html', feedbacks=feedbacks)
 
 
-@app.route('/order', methods=['POST', 'GET'])
+@app.route('/order', methods=['POST'])
 def order():
     if request.method == 'POST':
         name = session['user_name']
@@ -189,6 +189,7 @@ def order():
         try:
             db.session.add(order_info)
             db.session.commit()
+            session.pop('cart')
             return redirect('/cart')
         except:
             return render_template(DB_ERROR_PAGE)
@@ -320,10 +321,23 @@ def cart():
                 products_img=products_img)
 
 
+@app.route('/cart_clear')
+def cart_clear():
+    session.pop('cart')
+    return redirect('/cart')
+
+
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
 
+
+@app.route('/search', methods=['POST'])
+def search():
+    search = request.form['search_prod']
+    product = Product.query.filter_by(product_name=search).first_or_404()
+    product.product_img = b64encode(product.product_img).decode('utf-8')
+    return render_template('product_detail.html', product=product)
 
 
 if __name__ == "__main__":
