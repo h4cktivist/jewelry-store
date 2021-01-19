@@ -28,8 +28,15 @@
 
 <div class="image-wrapper">
 	<div class="search">
-		<form name="test" method="post" action="/search">
-			<input class="input-search" type="text" name="search_prod" placeholder="Поиск товара по категории">
+		<form method="post" action="/products">
+			<select name="category">
+				<option>Выберите категорию</option>
+				<option value="Браслет">Браслет</option>
+				<option value="Чокер">Чокер</option>
+				<option value="Цепочка">Цепочка</option>
+				<option value="Кулон">Кулон</option>
+				<option value="Сережка кольцо">Сережка кольцо</option>
+			</select><br>
 			<button class="button-search" type="submit">Поиск</button>
 		</form>
 	</div>

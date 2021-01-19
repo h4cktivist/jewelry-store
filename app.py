@@ -240,12 +240,21 @@ def new_product_reg():
             return redirect('/admin_login')
 
 
-@app.route('/products')
+@app.route('/products', methods=['POST', 'GET'])
 def products():
-    products = Product.query.order_by(Product.product_date.desc()).all()
-    for product in products:
-        product.product_img = b64encode(product.product_img).decode('utf-8')
-    return render_template('products.html', products=products)
+    if request.method == 'POST':
+        product_category = request.form['category']
+        products = Product.query.filter_by(product_category=product_category).all()
+        print(products)
+        for product in products:
+            product.product_img = b64encode(product.product_img).decode('utf-8')
+        return render_template('products.html', products=products)
+
+    if request.method == 'GET':
+        products = Product.query.order_by(Product.product_date.desc()).all()
+        for product in products:
+            product.product_img = b64encode(product.product_img).decode('utf-8')
+        return render_template('products.html', products=products)
 
 
 @app.route('/products/<int:id>', methods=['POST', 'GET'])
