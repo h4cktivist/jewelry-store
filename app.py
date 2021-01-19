@@ -67,6 +67,7 @@ class Product(db.Model):
     product_description = db.Column(db.String(200), nullable=False)
     product_date = db.Column(db.DateTime, default=datetime.utcnow)
     product_img = db.Column(db.BLOB())
+    product_category = db.Column(db.String(30), nullable=False)
     product_cost = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
@@ -210,6 +211,7 @@ def new_product_reg():
         product_name = request.form['product_name']
         product_description = request.form['product_description']
         product_cost = request.form['product_cost']
+        product_category = request.form['category']
         file = request.files['product_img']
 
         if file:
@@ -221,6 +223,7 @@ def new_product_reg():
         product_data = Product(product_name=product_name,
             product_description=product_description,
             product_cost=product_cost,
+            product_category=product_category,
             product_img=product_img_binary)
 
         try:
@@ -330,14 +333,6 @@ def cart_clear():
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
-
-
-@app.route('/search', methods=['POST'])
-def search():
-    search = request.form['search_prod']
-    product = Product.query.filter_by(product_name=search).first_or_404()
-    product.product_img = b64encode(product.product_img).decode('utf-8')
-    return render_template('product_detail.html', product=product)
 
 
 if __name__ == "__main__":
