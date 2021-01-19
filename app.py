@@ -245,7 +245,6 @@ def products():
     if request.method == 'POST':
         product_category = request.form['category']
         products = Product.query.filter_by(product_category=product_category).all()
-        print(products)
         for product in products:
             product.product_img = b64encode(product.product_img).decode('utf-8')
         return render_template('products.html', products=products)
