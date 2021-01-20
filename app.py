@@ -158,6 +158,12 @@ def admin_page():
         return redirect('/admin_login')
 
 
+@app.route('/admin_logout')
+def admin_logout():
+    session.pop('logged_in', None)
+    return redirect('/admin_login')
+
+
 @app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
     if request.method == 'POST':
