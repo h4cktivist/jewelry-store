@@ -15,15 +15,22 @@ header{
 	background: #393F3A;
 }
 
+.section{
+	border:3px solid #393F3A;
+	border-radius: 7px;
+	width: 400px;
+	height: 400px;
+	margin: 0 auto;
+}
+
 form{
 	margin: 0 auto;
 	text-align: center;
 	position: relative;
-	top: 130px;
+	top: 70px;
 }
 
 input{
-	margin-bottom: 20px;
 	width: 400px;
 	height: 50px;
 	border: solid 2px #393F3A;
@@ -31,7 +38,7 @@ input{
 	outline: none;
 	text-align: center;
 	font-family: Prociono;
-	font-size: 20px;
+	font-size: 24px;
 	margin-bottom: 10px;
 }
 
@@ -70,6 +77,7 @@ input{
 
 h1{
 	text-align: center;
+	font-family: Prociono;
 }
 
 
@@ -80,4 +88,78 @@ a{
 	margin-left: 20px;
 	text-decoration: none;
 	color: black;
+}
+
+a:hover{
+	color: #bf94e4;
+}
+
+#a_prd_reg{
+	font-size: 30px;
+	font-family: Prociono;
+	font-style: normal;
+	margin-bottom: 20px;
+	margin: 0 auto;
+}
+
+#a_prd_reg:hover{
+	color: #bf94e4;
+}
+
+textarea{
+  	min-height: 50px;
+  	height: 100px;
+  	max-height: 185px;
+  	min-width: 400px;
+  	width: 100px;
+  	max-width: 400px;
+  	margin-bottom: 10px;
+  	text-align: center;
+  	border: solid 2px #393F3A;
+  	font-family: Prociono;
+	font-size: 20px;
+}
+
+select{
+	outline: none;
+	margin-bottom: 20px;
+	width: 400px;
+	height: 45px;
+	font-family: Prociono;
+	font-size: 20px;
+}
+
+select:hover{
+	background: white;
+}
+
+#file{
+	width: 400px;
+	height: 50px;
+	border: none;
+	outline: none;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+#button_prd_reg{
+	width: 400px;
+	height: 45px;
+	background-color: #417246;
+	border: solid 2px #393F3A;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	outline: none;
+	text-align: center;
+	position: relative;
+	top: 20px;
+	cursor: pointer;
+}
+
+#button_prd_reg:active{
+	top: 18px;
 }

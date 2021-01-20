@@ -1,15 +1,33 @@
 <!DOCTYPE html>
 <html>
 <head>
+	<meta charset="UTF-8">
 	<title>New Product Registration</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin.css') }}">
 </head>
+	<div class="poloska"></div>
+
+
+
+
+
 <body>
 	<form enctype="multipart/form-data" method="post">
+		<a id="a_prd_reg" href="admin_page">← Назад</a><br><br>
 		<input type="text" id="product_name" name="product_name" placeholder="Название товара"><br>
 		<textarea type="text" id="product_description" name="product_description" placeholder="Описание"></textarea><br>
-		<input type="file" name=product_img id="product_img"><br>
+		<input id="file" type="file" name=product_img id="product_img"><br>
+		<select name="category">
+			<option class="option">Выберите категорию</option>
+			<option class="option" value="Браслет">Браслет</option>
+			<option class="option" value="Чокер">Чокер</option>
+			<option class="option" value="Цепочка">Цепочка</option>
+			<option class="option" value="Кулон">Кулон</option>
+			<option class="option" value="Сережка кольцо">Сережки</option>
+			<option class="option" value="Сережка кольцо">Кольца</option>
+		</select><br>
 		<input type="text" name="product_cost" placeholder="Цена"><br>
-		<input type="submit" value="Submit">
+		<input id="button_prd_reg" type="submit" value="Submit">
 	</form>
 </html>

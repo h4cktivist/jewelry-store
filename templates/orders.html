@@ -3,19 +3,25 @@
 <head>
 	<title>Заказы</title>
 	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='order.css') }}">
 </head>
 <body>
+	<div class="poloska"></div>
 	<h1>Заказы</h1>
+	<a id="a_prd_reg" href="admin_page">← Назад</a><br><br>
 	{% if orders|length > 0 %}
 
 		{% for order in orders %}
-			<p>Имя заказчика: {{ order.name }}</p>
-			<p>Как с ним связаться: {{ order.contact }}</p>
+		<div class="order">
+			<p id="name">Имя заказчика: {{ order.name }}</p>
+			<p>Как с ним связаться:<br><br> {{ order.contact }}</p>
 			<p>Заказ: {{ order.order }}</p>
+			<input type="submit" value="Выполнен!" id="button">
+		</div>
 		{% endfor %}
 
 	{% else %}
-		<p>Новых заказов нет</p>
+		<h2>Новых заказов нет</h2>
 	{% endif %}
 </body>
 </html>
