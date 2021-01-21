@@ -202,6 +202,15 @@ def order():
             return render_template(DB_ERROR_PAGE)
 
 
+@app.route('/order_remove', methods=['POST'])
+def order_remove():
+    order_id = request.form['order_id']
+    order_for_remove = Order.query.filter_by(id=order_id).delete()
+    db.session.commit()
+    
+    return redirect('/orders')
+
+
 @app.route('/orders')
 def orders():
     if 'logged_in' in session:

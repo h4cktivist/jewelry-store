@@ -16,7 +16,10 @@
 			<p id="name">Имя заказчика: {{ order.name }}</p>
 			<p>Как с ним связаться:<br><br> {{ order.contact }}</p>
 			<p>Заказ: {{ order.order }}</p>
-			<input type="submit" value="Выполнен!" id="button">
+			<form method="post" action="/order_remove">
+				<input type="hidden" name="order_id" value="{{ order.id }}">
+				<input type="submit" value="Выполнен!" id="button">
+			</form>
 		</div>
 		{% endfor %}
 
