@@ -1,38 +1,98 @@
 <!DOCTYPE html>
-<html>
+<html lang="ru">
+
 <head>
+	<meta charset="UTF-8">
 	<title>Ваша Корзина</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='cart.css') }}">
 </head>
+
 <body>
-	<h1>Корзина</h1>
 
+	<header class="header__panel">
+		<div class="wrapper">
+			<div class="social">
+				<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/vk-icon.png') }}"></a></div>
+				<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/google-icon.png') }}"></a></div>
+				<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
+			</div>
+		</div>
+	</header>
+
+	<div class="image_wrapper">
+		<div class="description">
+			<h1>YUPIBUM</h1>
+			<span>- украшения ручной работы,</span>
+			<span>изготовленные с любовью.</span>
+		</div>
+		<nav class="navigation">
+			<button class="button" onclick="window.location.href = '/';"><a href="/">ГЛАВНАЯ</a></button>
+			<button class="button" onclick="window.location.href = '#';"><a href="#">О НАС</a></button>
+			<button class="button" onclick="window.location.href = '/products';"><a href="/products">КАТАЛОГ</a></button>
+			<button class="button" onclick="window.location.href = '#';"><a href="#contacts">КОНТАКТЫ</a></button>
+			<button class="button" onclick="window.location.href = '/cart';"><a href="/cart">КОРЗИНА</a></button>
+		</nav>
+	</div>
+
+	<div class="cart_title">Корзина</div>
+	<div class="decoration_line"></div>
 	{% if cart_products|length > 0 %}
+	<div class="main_content">
 
-		{% for product_img in products_img %}
-			<img width="100" height="100" src="data:;base64,{{ product_img }}">
-		{% endfor %}
+		<div class="product">
 
-		{% for cart_product in cart_products %}
-			<p>{{ cart_product }}</p>
-		{% endfor %}
+			<div class="product_image">
+				{% for product_img in products_img %}
+					<img class="product_image_inner" width="100" height="100" src="data:;base64,{{ product_img }}">
+				{% endfor %}
+			</div>
 
-		{% for product_cost in products_cost %}
-			<p>{{ product_cost }} тенге</p>
-		{% endfor %}
+			<div class="product_title">
+				{% for cart_product in cart_products %}
+					<div class="product_title_inner">{{ cart_product }}</div>
+				{% endfor %}
+			</div>
 
-		<p>Итого: {{ full_cost }}</p>
+			<div class="product_price">
+				{% for product_cost in products_cost %}
+					<div class="product_price_inner">{{ product_cost }} тенге</div>
+				{% endfor %}
+			</div>
+		</div>
 
+		<div class="price">
+			<div class="price_total">Итого: <span class="green">{{ full_cost }}</span> тенге</div>
+			<div class="popup_link"><a href="#"><div class="popup_button">Оформить заказ</div></a> </div>
+			<div class="clear_button"><a href="/cart_clear">Очистить корзину</a></div>
+		</div>
+
+	</div>
+
+
+	<div class="popup">
 		<form method="POST" action="/order">
 			<input type="hidden" id="order" name="order" value="{{ session['cart'] }}"><br>
 			<textarea type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"></textarea><br>
 			<input type="submit" value="Оформить заказ">
 		</form>
+	</div>
 
-		<a href="/cart_clear">Очистить корзину</a>
+	<footer class="footer" id="contacts">
+		<h2>YUPIBUM</h2>
+		<div class="decoration__line"></div>
+		<span>- украшения ручной работы,</span>
+		<span> изготовленные с любовью.</span>
+		<div class="social">
+			<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/vk-icon.png') }}"></a></div>
+			<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/google-icon.png') }}"></a></div>
+			<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
+		</div>
+	</footer>
+
 
 	{% else %}
 		<p>В Вашей корзине пока нет товаров.</p>
-
 	{% endif %}
 </body>
+
 </html>
