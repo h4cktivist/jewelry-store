@@ -76,6 +76,7 @@ body {
     &:hover {
       background: #788E7B;
       transition-duration: 0.5s;
+      cursor:pointer;
     }
   }
 
@@ -160,6 +161,7 @@ body {
     background: #393F3A;
     color:#ECE0E0;
     transition-duration: 0.5s;
+    cursor:pointer;
   }
 }
 
@@ -172,22 +174,35 @@ body {
 .feedback {
   margin:20px;
   font-family:sans-serif;
+
+  &_content_text {
+    overflow-wrap: break-word;
+  }
+
   &_title {
     font-weight: 200;
     font-size: 30px;
     color: #484848;
   }
 
+  &_flex {
+    display:flex;
+    align-items:center;
+  }
+
   .input_text {
-    width: 500px;
+    width: 600px;
+    height:60px;
     font-size: 13px;
-    padding: 6px 0 4px 10px;
     border: 1px solid #cecece;
     background: #F6F6f6;
     border-radius: 8px;
     outline: none;
   }
 
+  .input-buttons-block {
+    padding: 6px 0 4px 10px;
+  }
   .input_button {
     width: 150px;
     height:30px;
@@ -201,6 +216,7 @@ body {
     &:hover {
       background: #788E7B;
       transition-duration: 0.5s;
+      cursor:pointer;
     }
   }
 }

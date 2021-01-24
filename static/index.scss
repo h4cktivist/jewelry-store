@@ -47,7 +47,7 @@ body {
     text-decoration:none;
 
     &:hover {
-      font-weight: bolder;
+      color: #788E7B;
     }
   }
 
@@ -143,6 +143,7 @@ body {
     &:hover {
       background: #485e4a;
       transition-duration: 0.5s;
+      cursor:pointer;
     }
   }
   .active-button {
@@ -150,6 +151,8 @@ body {
     height: 40px;
     background: #393F3A;
     border-radius: 10px;
+    outline: none;
+    border: none;
   }
 
   a {
