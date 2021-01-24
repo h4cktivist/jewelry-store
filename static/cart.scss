@@ -3,6 +3,12 @@
   padding:0;
 }
 
+body {
+  margin:0;
+  padding:0;
+  min-width:1200px;
+}
+
 a {
   text-decoration:none;
   color: #494f4a;
@@ -192,7 +198,9 @@ a {
         align-items:center;
         border-radius: 10px;
         text-decoration:none;
-       font-family:sans-serif;
+        font-family:sans-serif;
+        outline: none;
+        border: none;
 
        &:hover {
          background: #788E7B;
@@ -238,6 +246,104 @@ a {
     font-size:18px;
     color: #788E7B;
   }
-
 }
+
+
+.popup {
+  position: fixed;
+  left:0;
+  top:0;
+  background: rgba(0, 0, 0, 0.6);
+  height: 100%;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  pointer-events: none;
+  transition: all 0.8s ease 0s;
+
+  h2 {
+    text-align:center;
+    font-family:sans-serif;
+    color:#485e4a;
+  }
+
+  &_content {
+    background: #fff;
+    padding: 20px;
+    border-radius: 4px;
+    position: relative;
+    transition: all 0.8s ease 0s;
+    transform: perspective(600px) translate(0px, -100%) rotateX(45deg);
+  }
+
+  #contact {
+    min-width:300px;
+    min-height: 150px;
+    border: 1px solid #cecece;
+    background: #F6F6f6;
+    border-radius: 8px;
+    outline: none;
+    margin:20px;
+  }
+
+  .popup_action {
+    max-width:400px;
+    display: flex;
+    flex-direction:column;
+    align-items: center;
+    justify-content: center;
+  }
+
+  input {
+    width:180px;
+    height:45px;
+    background:#485e4a;
+    color: white;
+    border-radius: 10px;
+    font-family:sans-serif;
+    outline: none;
+    border: none;
+    font-size:14px;
+
+    &:hover {
+      background: #788E7B;
+      transition-duration: 0.5s;
+      cursor:pointer;
+    }
+  }
+}
+
+
+.popup_content button.close {
+  position: absolute;
+  right: 10px;
+  top: 10px;
+  font-size: 32px;
+  background: none;
+  border: none;
+  outline: none;
+  cursor: pointer;
+}
+.popup_content button.close:hover {
+  color: #7d9862;
+}
+.active {
+  opacity: 1;
+  pointer-events: auto;
+}
+.popup.active .popup_content{
+  transform: perspective(600px) translate(0px, 0%) rotateX(0deg);
+}
+
+.else_text {
+  text-align:center;
+  margin: 200px;
+  font-family:sans-serif;
+  color:#393F3A;
+  font-size:20px;
+}
+
+
 

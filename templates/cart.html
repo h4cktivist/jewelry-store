@@ -62,20 +62,18 @@
 
 		<div class="price">
 			<div class="price_total">Итого: <span class="green">{{ full_cost }}</span> тенге</div>
-			<div class="popup_link"><a href="#"><div class="popup_button">Оформить заказ</div></a> </div>
+			<button class="popup_button" id="open">Оформить заказ</button>
 			<div class="clear_button"><a href="/cart_clear">Очистить корзину</a></div>
 		</div>
 
 	</div>
 
 
-	<div class="popup">
-		<form method="POST" action="/order">
-			<input type="hidden" id="order" name="order" value="{{ session['cart'] }}"><br>
-			<textarea type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"></textarea><br>
-			<input type="submit" value="Оформить заказ">
-		</form>
-	</div>
+	{% else %}
+	<p class="else_text">В Вашей корзине пока нет товаров.</p>
+	{% endif %}
+
+
 
 	<footer class="footer" id="contacts">
 		<h2>YUPIBUM</h2>
@@ -90,9 +88,26 @@
 	</footer>
 
 
-	{% else %}
-		<p>В Вашей корзине пока нет товаров.</p>
-	{% endif %}
+		<div class="popup">
+			<div class="popup_content">
+
+				<button class="close">&times;</button>
+
+				<h2 class="popup_title">Оформление заказа</h2>
+
+				<form method="POST" action="/order">
+					<div class="popup_action">
+					<input type="hidden" id="order" name="order" value="{{ session['cart'] }}"><br>
+					<textarea  type="text" id="contact" name="contact" placeholder="Как мы можем с Вами связаться?"></textarea><br>
+						<input id="popup_input_button" type="submit" value="Оформить заказ">
+					</div>
+				</form>
+			</div>
+		</div>
+
+
+
+	<script src="{{ url_for('static', filename='cart.js') }}"></script>
 </body>
 
 </html>
