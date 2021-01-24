@@ -250,6 +250,7 @@ a {
   border-radius: 8px;
   outline: none;
   margin: 20px;
+  resize: none;
 }
 .popup .popup_action {
   max-width: 400px;
