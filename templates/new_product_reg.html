@@ -2,7 +2,7 @@
 <html>
 <head>
 	<meta charset="UTF-8">
-	<title>New Product Registration</title>
+	<title>Добавление нового товара</title>
     <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
     <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin.css') }}">
 </head>
@@ -17,7 +17,7 @@
 		<a id="a_prd_reg" href="admin_page">← Назад</a><br><br>
 		<input type="text" id="product_name" name="product_name" placeholder="Название товара"><br>
 		<textarea type="text" id="product_description" name="product_description" placeholder="Описание"></textarea><br>
-		<input id="file" type="file" name=product_img id="product_img"><br>
+		<input id="file" type="file" name=product_img id="product_img" class="custom-file-input"><br>
 		<select name="category">
 			<option class="option">Выберите категорию</option>
 			<option class="option" value="Браслет">Браслет</option>

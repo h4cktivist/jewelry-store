@@ -67,11 +67,13 @@
 		<p class="feedback_title">Отзывы</p>
 
 		{% if session.user_name %}
-			<form enctype="multipart/form-data" method="post">
+			<form enctype="multipart/form-data" method="post" class="feedback_flex">
 				<input type="hidden" name="fb_id" value="product.id">
 				<textarea type="text" name="text" class="input_text" placeholder="Введите текст отзыва"></textarea>
-				<input type="file" name="image">
-				<input type="submit" value="Отправить отзыв" class="input_button">
+				<div class="input-buttons-block">
+					<input type="file" name="image" class="input_img">
+					<input type="submit" value="Отправить отзыв" class="input_button">
+				</div>
 			</form>
 		{% else %}
 			<br>
