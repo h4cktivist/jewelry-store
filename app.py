@@ -67,6 +67,7 @@ class Product(db.Model):
     product_description = db.Column(db.String(200), nullable=False)
     product_date = db.Column(db.DateTime, default=datetime.utcnow)
     product_img = db.Column(db.BLOB())
+    product_category = db.Column(db.String(30), nullable=False)
     product_cost = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
@@ -157,6 +158,12 @@ def admin_page():
         return redirect('/admin_login')
 
 
+@app.route('/admin_logout')
+def admin_logout():
+    session.pop('logged_in', None)
+    return redirect('/admin_login')
+
+
 @app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
     if request.method == 'POST':
@@ -195,6 +202,15 @@ def order():
             return render_template(DB_ERROR_PAGE)
 
 
+@app.route('/order_remove', methods=['POST'])
+def order_remove():
+    order_id = request.form['order_id']
+    order_for_remove = Order.query.filter_by(id=order_id).delete()
+    db.session.commit()
+    
+    return redirect('/orders')
+
+
 @app.route('/orders')
 def orders():
     if 'logged_in' in session:
@@ -210,6 +226,7 @@ def new_product_reg():
         product_name = request.form['product_name']
         product_description = request.form['product_description']
         product_cost = request.form['product_cost']
+        product_category = request.form['category']
         file = request.files['product_img']
 
         if file:
@@ -221,6 +238,7 @@ def new_product_reg():
         product_data = Product(product_name=product_name,
             product_description=product_description,
             product_cost=product_cost,
+            product_category=product_category,
             product_img=product_img_binary)
 
         try:
@@ -237,12 +255,20 @@ def new_product_reg():
             return redirect('/admin_login')
 
 
-@app.route('/products')
+@app.route('/products', methods=['POST', 'GET'])
 def products():
-    products = Product.query.order_by(Product.product_date.desc()).all()
-    for product in products:
-        product.product_img = b64encode(product.product_img).decode('utf-8')
-    return render_template('products.html', products=products)
+    if request.method == 'POST':
+        product_category = request.form['category']
+        products = Product.query.filter_by(product_category=product_category).all()
+        for product in products:
+            product.product_img = b64encode(product.product_img).decode('utf-8')
+        return render_template('products.html', products=products)
+
+    if request.method == 'GET':
+        products = Product.query.order_by(Product.product_date.desc()).all()
+        for product in products:
+            product.product_img = b64encode(product.product_img).decode('utf-8')
+        return render_template('products.html', products=products)
 
 
 @app.route('/products/<int:id>', methods=['POST', 'GET'])
@@ -330,7 +356,6 @@ def cart_clear():
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
-
 
 
 if __name__ == "__main__":

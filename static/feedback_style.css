@@ -116,13 +116,50 @@ textarea{
   	min-width: 0px;
   	max-width: 50%;
   	overflow-wrap: break-word;
-  	/*height: 100px;
-  	overflow: hidden;*/    /*  <--- Это здесь нахуя? Зачем я это прописал, я не помню */
+  	max-height: 500px;
+  	min-height: 100px;
+
 }
 
+#fb_ready:hover{
+   max-height: 300px;
+   transition: 1s;
+}
+
+#danger {
+	margin: 0 auto;
+	font-size: 20px;
+	font-family: Prociono;
+	font-style: normal;
+	width: 400px;
+  	background-color: #ddffdd;
+  	border-left: 6px solid #417246;
+  	border-right: 6px solid #417246;
+  	border-radius: 10px;
+}
+
+
+/*                   Белая полоска которая делает типо затухание текста, хз, сейчас надо.
+#fb_ready:before{
+	content:"";
+    display:block;
+    height: 20px;
+    position:relative;
+    top:80px;
+    background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%)
+}
+
+#otziv_name{
+	margin-top: -20px;
+}
+*/
 #otziv{
 	margin-right: 5px;
 	margin-left: 5px;
+	margin-top: -20px;
+	/*
+	margin-top: -20px; включать при искользования закомменченного кода выше.
+	*/
 }
 
 #fb_else{
@@ -151,12 +188,11 @@ i:hover{
 	cursor: pointer;
 }
 #more{
-	display: none;
+	display: block;
+	margin-left: auto;
+ 	margin-right: 0.7em;
 }
 
-#more.active{
-	display: block;
-}
 
 @keyframes color_change{
 	14%{color: red;}

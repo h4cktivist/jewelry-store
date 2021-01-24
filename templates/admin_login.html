@@ -2,12 +2,19 @@
 <html>
 <head>
 	<title>Администратор</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin.css') }}">
 </head>
 <body>
+
+	<div class="poloska"></div>
+
+	<p id="entrance">Дарова админ! Как дела Бро-о-о-о?</p>
+
 	<form method="post">
-		<input type="text" name="login" placeholder="Enter login"><br>
-		<input type="text" name="password" placeholder="Enter password"><br>
-		<input type="submit" value="Login">
+		<input type="text" name="login" placeholder="Введи логин"><br>
+		<input type="text" name="password" placeholder="Введи пароль"><br>
+		<input id="button" type="submit" value="Войти!">
 	</form>
 </body>
 </html>

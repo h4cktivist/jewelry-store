@@ -4,6 +4,7 @@
 	<title>Вход/Регистрация</title>
 	<meta charset="UTF-8">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='style.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 	<script type="text/javascript">
 		function open_auth(){
 				document.getElementById("form").classList.toggle('active');
@@ -35,19 +36,15 @@
 		
 	<p id="entrance">Добро пожаловать на страницу авторизации!</p>
 	<p id="auth_entrance">Войти</p>
-
 	<p><button id="entrance_btn" onclick="open_auth()">Войти</button></p>
 	<p><button id="entrance_reg_btn" onclick="document.location='/registration'">Зарегистрироваться</button></p>
 	
 	<div id="form">
-
 	<form  method="post">
 		<input id="nameput" type="text" name="username" placeholder="Введите имя пользователя"><br>
 		<input id="nameput" type="text" name="paswrd" placeholder="Введите пароль"><br>
 		<input id="button" type="submit" name="Войти">
 	</form>
-
 	</div>
-
 </body>
 </html>
