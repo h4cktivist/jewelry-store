@@ -1,11 +1,10 @@
 from datetime import datetime
 from base64 import b64encode
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 import sqlite3 as lite
 from werkzeug.utils import secure_filename
-
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -95,7 +94,7 @@ def registration():
             db.session.add(user_data)
             db.session.commit()
             return redirect('/user_login')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
     else:
@@ -133,7 +132,7 @@ def admin_login():
         login = request.form['login']
         password = request.form['password']
 
-        if not 'logged_in' in session:
+        if 'logged_in' not in session:
             if (login == 'admin') and (password == 'admin_pass'):
                 session['logged_in'] = True
                 return redirect('/admin_page')
@@ -176,7 +175,7 @@ def feedback():
             db.session.add(feedback_data)
             db.session.commit()
             return redirect('/feedback')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
     else:
@@ -198,16 +197,16 @@ def order():
             db.session.commit()
             session.pop('cart')
             return redirect('/cart')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
 
 @app.route('/order_remove', methods=['POST'])
 def order_remove():
     order_id = request.form['order_id']
-    order_for_remove = Order.query.filter_by(id=order_id).delete()
+    Order.query.filter_by(id=order_id).delete()
     db.session.commit()
-    
+
     return redirect('/orders')
 
 
@@ -236,16 +235,16 @@ def new_product_reg():
             product_img_binary = lite.Binary(product_img)
 
         product_data = Product(product_name=product_name,
-            product_description=product_description,
-            product_cost=product_cost,
-            product_category=product_category,
-            product_img=product_img_binary)
+                               product_description=product_description,
+                               product_cost=product_cost,
+                               product_category=product_category,
+                               product_img=product_img_binary)
 
         try:
             db.session.add(product_data)
             db.session.commit()
             return redirect('/new_product_reg')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
     else:
@@ -294,7 +293,7 @@ def product_detail(id):
             db.session.add(product_feedbacks)
             db.session.commit()
             return redirect('/')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
     if request.method == 'GET':
@@ -314,7 +313,7 @@ def product_detail(id):
 
 @app.route('/cart', methods=['POST', 'GET'])
 def cart():
-    if not 'user_name' in session:
+    if 'user_name' not in session:
         return redirect('/user_login')
     else:
         if 'cart' not in session:
@@ -341,10 +340,10 @@ def cart():
             full_cost = sum((int(products_cost[i]) for i in range(0, int(len(products_cost)))))
 
             return render_template('cart.html',
-                cart_products=cart_products,
-                products_cost=products_cost,
-                full_cost=full_cost,
-                products_img=products_img)
+                                   cart_products=cart_products,
+                                   products_cost=products_cost,
+                                   full_cost=full_cost,
+                                   products_img=products_img)
 
 
 @app.route('/cart_clear')
