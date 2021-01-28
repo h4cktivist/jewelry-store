@@ -67,17 +67,21 @@
 
 <div class="products__wrapper">
 	<div class="products__cards" id="products">
-		{% for el in products %}
-			<a class="card" href="/products/{{ el.id }}">
-				<img class="card__image" width="261" height="262" src="data:;base64,{{ el.product_img }}">
-				<div class="card__content">
-					<div class="card__content__price">{{ el.product_cost }} тенге</div>
-					<div class="card__content__title">
-						<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-					</div>
-				</div>
-			</a>
-		{% endfor %}
+        {% if products|length > 0 %}
+            {% for el in products %}
+                <a class="card" href="/products/{{ el.id }}">
+                    <img class="card__image" width="261" height="262" src="data:;base64,{{ el.product_img }}">
+                    <div class="card__content">
+                        <div class="card__content__price">{{ el.product_cost }} тенге</div>
+                        <div class="card__content__title">
+                            <img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p>В выбранной Вами категории пока нет товаров</p>
+        {% endif %}
 	</div>
 </div>
 

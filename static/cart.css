@@ -245,12 +245,13 @@ a {
 .popup #contact {
   min-width: 300px;
   min-height: 150px;
-  resize: none; 
+  resize: none;
   border: 1px solid #cecece;
   background: #F6F6f6;
   border-radius: 8px;
   outline: none;
   margin: 20px;
+  resize: none;
 }
 .popup .popup_action {
   max-width: 400px;
