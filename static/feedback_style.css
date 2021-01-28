@@ -138,28 +138,10 @@ textarea{
   	border-radius: 10px;
 }
 
-
-/*                   Белая полоска которая делает типо затухание текста, хз, сейчас надо.
-#fb_ready:before{
-	content:"";
-    display:block;
-    height: 20px;
-    position:relative;
-    top:80px;
-    background-image:linear-gradient(to bottom, rgba(255, 255, 255, 0), #fff 75%)
-}
-
-#otziv_name{
-	margin-top: -20px;
-}
-*/
 #otziv{
 	margin-right: 5px;
 	margin-left: 5px;
 	margin-top: -20px;
-	/*
-	margin-top: -20px; включать при искользования закомменченного кода выше.
-	*/
 }
 
 #fb_else{
@@ -192,7 +174,6 @@ i:hover{
 	margin-left: auto;
  	margin-right: 0.7em;
 }
-
 
 @keyframes color_change{
 	14%{color: red;}
