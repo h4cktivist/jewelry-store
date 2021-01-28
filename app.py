@@ -261,13 +261,13 @@ def products():
         products = Product.query.filter_by(product_category=product_category).all()
         for product in products:
             product.product_img = b64encode(product.product_img).decode('utf-8')
-        return render_template('products.html', products=products)
+        return render_template('index.html', products=products)
 
     if request.method == 'GET':
         products = Product.query.order_by(Product.product_date.desc()).all()
         for product in products:
             product.product_img = b64encode(product.product_img).decode('utf-8')
-        return render_template('products.html', products=products)
+        return render_template('index.html', products=products)
 
 
 @app.route('/products/<int:id>', methods=['POST', 'GET'])
