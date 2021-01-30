@@ -40,26 +40,21 @@
 	{% if cart_products|length > 0 %}
 	<div class="main_content">
 
-		<div class="product">
+		{% for p in cart_products %}
+			<div class="product">
+					<div class="product_image">
+						<img class="product_image_inner" width="100" height="100" src="data:;base64,{{ p.product_img }}">
+					</div>
 
-			<div class="product_image">
-				{% for product_img in products_img %}
-					<img class="product_image_inner" width="100" height="100" src="data:;base64,{{ product_img }}">
-				{% endfor %}
-			</div>
+					<div class="product_title">
+						<div class="product_title_inner">{{ p.product_name }}</div>
+					</div>
 
-			<div class="product_title">
-				{% for cart_product in cart_products %}
-					<div class="product_title_inner">{{ cart_product }}</div>
-				{% endfor %}
+					<div class="product_price">
+						<div class="product_price_inner">{{ p.product_cost }} тенге</div>
+					</div>
 			</div>
-
-			<div class="product_price">
-				{% for product_cost in products_cost %}
-					<div class="product_price_inner">{{ product_cost }} тенге</div>
-				{% endfor %}
-			</div>
-		</div>
+		{% endfor %}
 
 		<div class="price">
 			<div class="price_total">Итого: <span class="green">{{ full_cost }}</span> тенге</div>
@@ -71,7 +66,7 @@
 
 
 	{% else %}
-	<p class="else_text">В Вашей корзине пока нет товаров.</p>
+		<p class="else_text">В Вашей корзине пока нет товаров.</p>
 	{% endif %}
 
 

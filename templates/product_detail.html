@@ -50,9 +50,9 @@
 			<div class="product_price">Цена: {{ product.product_cost }}</div>
 
 			<form method="post" action="/cart" >
-				<input type="hidden" name="cart_prod_name" value="{{ product.product_name }}">
-				<input type="hidden" name="cart_prod_cost" value="{{ product.product_cost }}">
-				<input type="hidden" name="cart_prod_image" value="{{ product.product_img }}">
+				<input type="hidden" name="product_name" value="{{ product.product_name }}">
+				<input type="hidden" name="product_cost" value="{{ product.product_cost }}">
+				<input type="hidden" name="product_img" value="{{ product.product_img }}">
 				<input class="cart_button" type="submit" value="Добавить в коризину">
 			</form>
 		</div>

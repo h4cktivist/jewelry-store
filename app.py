@@ -315,35 +315,25 @@ def product_detail(id):
 def cart():
     if 'user_name' not in session:
         return redirect('/user_login')
+        
     else:
         if 'cart' not in session:
             session['cart'] = []
-            session['cart_cost'] = []
-            session['cart_img'] = []
 
         if request.method == 'POST':
-            cart_prod_name = request.form['cart_prod_name']
-            cart_prod_cost = request.form['cart_prod_cost']
-            cart_prod_image = request.form['cart_prod_image']
-
-            session['cart'].append(cart_prod_name)
-            session['cart_cost'].append(cart_prod_cost)
-            session['cart_img'].append(cart_prod_image)
+            session['cart'] += [{
+                'product_name': request.form['product_name'],
+                'product_cost': request.form['product_cost'],
+                'product_img': request.form['product_img'],
+            }]
 
             return redirect('/cart')
 
         if request.method == 'GET':
             cart_products = session['cart']
-            products_cost = session['cart_cost']
-            products_img = session['cart_img']
+            full_cost = sum([float(x['product_cost']) for x in session['cart']])
 
-            full_cost = sum((int(products_cost[i]) for i in range(0, int(len(products_cost)))))
-
-            return render_template('cart.html',
-                                   cart_products=cart_products,
-                                   products_cost=products_cost,
-                                   full_cost=full_cost,
-                                   products_img=products_img)
+            return render_template('cart.html', cart_products=cart_products, full_cost=full_cost)
 
 
 @app.route('/cart_clear')
