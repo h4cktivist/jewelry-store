@@ -201,133 +201,17 @@ body {
   color: #788E7B;
 }
 
-/*# sourceMappingURL=index.css.map */
-
-
-
-
-/* Листать вниз не надо */
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#netu{
+#netu {
   font-family: Prociono;
   font-size: 30px;
   text-align: center;
   height: 300px;
   margin-top: 100px;
 }
-
-#netu_else{
+#netu #netu_else {
   font-size: 40px;
 }
-
-#netu_else:hover{
+#netu #netu_else:hover {
   animation-name: color_change;
   animation-duration: 15s;
   animation-fill-mode: forwards;
@@ -335,13 +219,26 @@ body {
   animation-direction: alternate;
   cursor: pointer;
 }
-
-@keyframes color_change{
-  14%{color: red;}
-  28%{color: orange;}
-  44%{color: yellow;}
-  57%{color: green;}
-  71%{color: lightblue;}
-  85%{color: blue;}
-  100%{color: purple;}
+@keyframes color_change {
+  14% {
+    color: red;
+  }
+  28% {
+    color: orange;
+  }
+  44% {
+    color: yellow;
+  }
+  57% {
+    color: green;
+  }
+  71% {
+    color: lightblue;
+  }
+  85% {
+    color: blue;
+  }
+  100% {
+    color: purple;
+  }
 }

@@ -245,7 +245,6 @@ a {
 .popup #contact {
   min-width: 300px;
   min-height: 150px;
-  resize: none;
   border: 1px solid #cecece;
   background: #F6F6f6;
   border-radius: 8px;
@@ -308,5 +307,3 @@ a {
   color: #393F3A;
   font-size: 20px;
 }
-
-/*# sourceMappingURL=cart.css.map */
