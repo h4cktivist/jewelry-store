@@ -12,7 +12,7 @@ body {
   height: 38px;
   max-width: 100%;
   position: sticky;
-  background:#393F3A;
+  background:#2F2C42;
 
   .wrapper {
     max-width:1150px;
@@ -47,7 +47,7 @@ body {
     text-decoration:none;
 
     &:hover {
-      color: #788E7B;
+      color: #836CFF;
     }
   }
 
@@ -74,7 +74,8 @@ body {
   .button-search {
     width: 59px;
     height: 27px;
-    background: #C4C4C4;
+    background: #58517E;
+    color: #ECE0E0;
     border-radius: 10px;
     cursor: pointer;
     outline: none;
@@ -83,7 +84,7 @@ body {
     transition-duration: 0.5s;
 
     &:hover {
-      background-color: #788E7B;
+      background-color: #836CFF;
       color:#ECE0E0;
     }
   }
@@ -96,7 +97,7 @@ body {
   h1 {
     font-weight: 200;
     font-size: 96px;
-    color: #4C6247;
+    color: #58517E;
     margin: 0;
     padding-top:30px;
   }
@@ -119,7 +120,7 @@ body {
     width: 823px;
     height: 116px;
     border-radius: 20px;
-    background: #788E7B;
+    background: #58517E;
     position: relative;
   }
   .box_img {
@@ -135,13 +136,13 @@ body {
   .button {
     width: 200px;
     height: 40px;
-    background: #788E7B;
+    background: #58517E;
     border-radius: 10px;
     outline: none;
     border: none;
 
     &:hover {
-      background: #485e4a;
+      background: #836CFF;
       transition-duration: 0.5s;
       cursor:pointer;
     }
@@ -149,10 +150,11 @@ body {
   .active-button {
     width: 200px;
     height: 40px;
-    background: #393F3A;
+    background: #2F2C42;
     border-radius: 10px;
     outline: none;
     border: none;
+    cursor: pointer;
   }
 
   a {
@@ -206,18 +208,18 @@ body {
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  background:#393F3A;
+  background:#2F2C42;
 
   h2 {
     font-size: 48px;
-    color: #788E7B;
+    color: #ECE0E0;
     font-weight: lighter;
   }
 
   span {
     display:block;
     font-size:18px;
-    color: #788E7B;
+    color: #ECE0E0;
   }
 
 }
