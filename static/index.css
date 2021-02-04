@@ -12,7 +12,7 @@ body {
   height: 38px;
   max-width: 100%;
   position: sticky;
-  background: #393F3A;
+  background: #2F2C42;
 }
 .header__panel .wrapper {
   max-width: 1150px;
@@ -43,7 +43,7 @@ body {
   text-decoration: none;
 }
 .login a:hover {
-  color: #788E7B;
+  color: #836CFF;
 }
 
 .image-wrapper {
@@ -65,7 +65,8 @@ body {
 .image-wrapper .button-search {
   width: 59px;
   height: 27px;
-  background: #C4C4C4;
+  background: #58517E;
+  color: #ECE0E0;
   border-radius: 10px;
   cursor: pointer;
   outline: none;
@@ -74,7 +75,7 @@ body {
   transition-duration: 0.5s;
 }
 .image-wrapper .button-search:hover {
-  background-color: #788E7B;
+  background-color: #836CFF;
   color: #ECE0E0;
 }
 
@@ -85,7 +86,7 @@ body {
 .description h1 {
   font-weight: 200;
   font-size: 96px;
-  color: #4C6247;
+  color: #58517E;
   margin: 0;
   padding-top: 30px;
 }
@@ -107,7 +108,7 @@ body {
   width: 823px;
   height: 116px;
   border-radius: 20px;
-  background: #788E7B;
+  background: #58517E;
   position: relative;
 }
 .leaf-block .box_img {
@@ -123,23 +124,24 @@ body {
 .navigation .button {
   width: 200px;
   height: 40px;
-  background: #788E7B;
+  background: #58517E;
   border-radius: 10px;
   outline: none;
   border: none;
 }
 .navigation .button:hover {
-  background: #485e4a;
+  background: #836CFF;
   transition-duration: 0.5s;
   cursor: pointer;
 }
 .navigation .active-button {
   width: 200px;
   height: 40px;
-  background: #393F3A;
+  background: #2F2C42;
   border-radius: 10px;
   outline: none;
   border: none;
+  cursor: pointer;
 }
 .navigation a {
   font-size: 14px;
@@ -188,17 +190,17 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #393F3A;
+  background: #2F2C42;
 }
 .footer h2 {
   font-size: 48px;
-  color: #788E7B;
+  color: #ECE0E0;
   font-weight: lighter;
 }
 .footer span {
   display: block;
   font-size: 18px;
-  color: #788E7B;
+  color: #ECE0E0;
 }
 
 #netu {

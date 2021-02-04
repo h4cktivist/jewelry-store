@@ -23,31 +23,6 @@ header{
 	cursor: default;
 }
 
-.among_us a{
-	color: black;
-	text-decoration: none;
-	font-size: 35px;
-	cursor: default;
-}
-
-.among_us a:active{
-	color: black;
-}
-
-.among_us a:visited{
-	color: black;
-}
-
-.among_us span:hover{
-	animation-name: color_change;
-	animation-duration: 10s;
-	animation-fill-mode: forwards;
-	animation-iteration-count: infinite;
-	animation-direction: alternate;
-	cursor: default;
-}
-
-
 #fb_form{
 	margin: 0 auto;
 	text-align: center;
@@ -86,8 +61,8 @@ textarea{
 
 
 #sub_button{
-	background: #417246;
-	border: solid 2px #393F3A;
+	background: #58517E;
+	border: solid 2px #2F2C42;
   	border-radius: 10px;
   	color: #E5E5E5;
   	outline: none;
@@ -100,6 +75,7 @@ textarea{
 #sub_button:active{
 	top: 15px;
 	cursor: pointer;
+	background-color: #836CFF;
 }
 
 #feedback{
@@ -124,18 +100,6 @@ textarea{
 #fb_ready:hover{
    max-height: 300px;
    transition: 1s;
-}
-
-#danger {
-	margin: 0 auto;
-	font-size: 20px;
-	font-family: Prociono;
-	font-style: normal;
-	width: 400px;
-  	background-color: #ddffdd;
-  	border-left: 6px solid #417246;
-  	border-right: 6px solid #417246;
-  	border-radius: 10px;
 }
 
 #otziv{
