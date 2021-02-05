@@ -13,7 +13,7 @@ body {
   height: 38px;
   max-width: 100%;
   position: sticky;
-  background:#393F3A;
+  background:#2F2C42;
 
   .wrapper {
     width:1200px;
@@ -49,7 +49,7 @@ body {
   h2 {
     font-size: 64px;
     font-weight: 200;
-    color: #393F3A;
+    color: #58517E;
   }
 
   span {
@@ -68,13 +68,14 @@ body {
   .button {
     width: 200px;
     height: 40px;
-    background: #393F3A;
+    background: #58517E;
+    color: #ECE0E0;
     border-radius: 10px;
     outline: none;
     border: none;
 
     &:hover {
-      background: #788E7B;
+      background: #836CFF;
       transition-duration: 0.5s;
       cursor:pointer;
     }
@@ -95,18 +96,18 @@ body {
   justify-content:center;
   align-items:center;
   flex-direction:column;
-  background:#393F3A;
+  background:#2F2C42;
 
   h2 {
     font-size: 48px;
-    color: #788E7B;
+    color: #ECE0E0;
     font-weight: lighter;
   }
 
   span {
     display:block;
     font-size:18px;
-    color: #788E7B;
+    color: #ECE0E0;
   }
 
 }
@@ -154,11 +155,12 @@ body {
   height: 50px;
   font-size:16px;
   border-radius: 10px;
-  background: #A2BD86;
+  background: #836CFF;
+  color: #ECE0E0;
   outline: none;
   border: none;
   &:hover {
-    background: #393F3A;
+    background: #2F2C42;
     color:#ECE0E0;
     transition-duration: 0.5s;
     cursor:pointer;
@@ -192,12 +194,17 @@ body {
 
   .input_text {
     width: 600px;
+    min-width: 600px;
+    max-width: 600px;
     height:60px;
+    min-height: 60px;
+    max-height: 300px;
     font-size: 13px;
     border: 1px solid #cecece;
     background: #F6F6f6;
     border-radius: 8px;
     outline: none;
+    padding: 10px;
   }
 
   .input-buttons-block {
@@ -208,13 +215,13 @@ body {
     height:30px;
     font-size: 13px;
     border: 1px solid #cecece;
-    background: #393F3A;
+    background: #2F2C42;
     color:#ECE0E0;
     border-radius: 8px;
     outline: none;
 
     &:hover {
-      background: #788E7B;
+      background: #836CFF;
       transition-duration: 0.5s;
       cursor:pointer;
     }
@@ -236,7 +243,7 @@ body {
     border-radius:5px;
     font-weight:bolder;
     font-size:20px;
-    color: #7d9862;
+    color: #2F2C42;
   }
 
   &_date {

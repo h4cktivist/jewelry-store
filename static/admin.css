@@ -12,11 +12,11 @@ header{
 
 .poloska{
 	height: 38px;
-	background: #393F3A;
+	background: #2F2C42;
 }
 
 .section{
-	border:3px solid #393F3A;
+	border:3px solid #2F2C42;
 	border-radius: 7px;
 	width: 400px;
 	height: 400px;
@@ -30,10 +30,17 @@ form{
 	top: 70px;
 }
 
+#npr{
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+	top: 40px;
+}
+
 input{
 	width: 400px;
 	height: 50px;
-	border: solid 2px #393F3A;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	outline: none;
 	text-align: center;
@@ -58,8 +65,8 @@ input{
 #button{
 	width: 120px;
 	height: 30px;
-	background-color: #417246;
-	border: solid 2px #393F3A;
+	background-color: #58517E;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	font-family: Prociono;
 	font-size: 20px;
@@ -73,6 +80,11 @@ input{
 
 #button:active{
 	top: 18px;
+	background-color: #836CFF;
+}
+
+#button:hover{
+	background-color: #836CFF;
 }
 
 h1{
@@ -91,7 +103,7 @@ a{
 }
 
 a:hover{
-	color: #bf94e4;
+	color: #836CFF;
 }
 
 #a_prd_reg{
@@ -147,12 +159,12 @@ select:hover{
 #button_prd_reg{
 	width: 400px;
 	height: 45px;
-	background-color: #417246;
-	border: solid 2px #393F3A;
+	background-color: #58517E;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	font-family: Prociono;
 	font-size: 20px;
-	color: #E5E5E5;
+	color: #ECE0E0;
 	outline: none;
 	text-align: center;
 	position: relative;
@@ -164,6 +176,10 @@ select:hover{
 	top: 18px;
 }
 
+#button_prd_reg:hover{
+	background-color: #836CFF;
+}
+
 .custom-file-input {
   color: transparent;
 }
@@ -172,9 +188,9 @@ select:hover{
 }
 .custom-file-input::before {
   content: 'Выберите изображение';
-  color: white;
+  color: #ECE0E0;
   display: inline-block;
-  background-color: #417246;
+  background-color: #58517E;
   border: 1px solid #999;
   border-radius: 3px;
   padding: 5px 8px;

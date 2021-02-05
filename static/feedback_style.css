@@ -78,6 +78,10 @@ textarea{
 	background-color: #836CFF;
 }
 
+#sub_button:hover{
+	background-color: #836CFF;
+}
+
 #feedback{
 	margin-top: 100px;
 	margin-bottom: 100px;
