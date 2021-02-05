@@ -188,9 +188,12 @@ def order():
     if request.method == 'POST':
         name = session['user_name']
         contact = request.form['contact']
-        order = request.form['order']
+        order = []
 
-        order_info = Order(name=name, contact=contact, order=order)
+        for i in session['cart']:
+            order.append(i['product_name'])
+
+        order_info = Order(name=name, contact=contact, order=str(order))
 
         try:
             db.session.add(order_info)
