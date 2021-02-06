@@ -8,7 +8,6 @@ header{
 	text-align: center;
 }
 
-
 #headtxt{
 	margin: 0 auto;
 	position: relative;
@@ -18,13 +17,11 @@ header{
 	font-family: Prociono;
 	font-size: 64px;
 	font-style: normal;
-	color: #417246;
+	color: #58517E;
 	animation-name: entrance_opacity;
 	animation-duration: 3s;
 	animation-fill-mode: forwards;
 }
-
-
 
 #headtxt_under{
 	font-family: Segoe UI Emoji;
@@ -41,7 +38,7 @@ header{
 
 .poloska{
 	height: 38px;
-	background: #393F3A;
+	background: #2F2C42;
 }
 
 #entrance{
@@ -91,7 +88,7 @@ header{
 	margin: 0 auto;
 	position: relative;
 	top: 130px;
-	border: solid 2px #393F3A;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	font-family: Prociono;
 	font-size: 20px;
@@ -103,11 +100,12 @@ header{
 	outline: none;
 	opacity: 0;
 	cursor: pointer;
-	background-color: #417246;
+	background-color: #58517E;
 }
 
 #entrance_btn:active{
 	top: 128px;
+	background-color: #836CFF;
 }
 
 #entrance_reg_btn{
@@ -117,7 +115,7 @@ header{
 	margin: 0 auto;
 	position: relative;
 	top: 130px;
-	border: solid 2px #393F3A;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	font-family: Prociono;
 	font-size: 20px;
@@ -129,11 +127,12 @@ header{
 	outline: none;
 	opacity: 0;
 	cursor: pointer;
-	background-color: #417246;
+	background-color: #58517E;
 }
 
 #entrance_reg_btn:active{
 	top: 128px;
+	background-color: #836CFF;
 }
 
 @keyframes entrance_opacity{
@@ -161,7 +160,7 @@ form{
 #nameput{
 	width: 400px;
 	height: 50px;
-	border: solid 2px #393F3A;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	outline: none;
 	text-align: center;
@@ -173,7 +172,7 @@ form{
 #reg_nameput{
 	width: 400px;
 	height: 50px;
-	border: solid 2px #393F3A;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	outline: none;
 	text-align: center;
@@ -199,8 +198,8 @@ form{
 #button{
 	width: 120px;
 	height: 30px;
-	background-color: #417246;
-	border: solid 2px #393F3A;
+	background-color: #58517E;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	font-family: Prociono;
 	font-size: 20px;
@@ -214,14 +213,15 @@ form{
 
 #button:active{
 	top: 18px;
+	background-color: #836CFF;
 }
 
 
 #regbutton{
 	width: 200px;
 	height: 30px;
-	background-color: #417246;
-	border: solid 2px #393F3A;
+	background-color: #58517E;
+	border: solid 2px #2F2C42;
 	border-radius: 5px;
 	font-family: Prociono;
 	font-size: 20px;
@@ -235,6 +235,7 @@ form{
 
 #regbutton:active{
 	top: 18px;
+	background-color: #836CFF;
 }
 
 #regform {

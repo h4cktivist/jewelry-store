@@ -1,11 +1,10 @@
 from datetime import datetime
 from base64 import b64encode
-from flask import Flask, render_template, url_for, request, redirect, session
+from flask import Flask, render_template, request, redirect, session
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 import sqlite3 as lite
 from werkzeug.utils import secure_filename
-
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -67,6 +66,7 @@ class Product(db.Model):
     product_description = db.Column(db.String(200), nullable=False)
     product_date = db.Column(db.DateTime, default=datetime.utcnow)
     product_img = db.Column(db.BLOB())
+    product_category = db.Column(db.String(30), nullable=False)
     product_cost = db.Column(db.String(10), nullable=False)
 
     def __repr__(self):
@@ -94,7 +94,7 @@ def registration():
             db.session.add(user_data)
             db.session.commit()
             return redirect('/user_login')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
     else:
@@ -132,7 +132,7 @@ def admin_login():
         login = request.form['login']
         password = request.form['password']
 
-        if not 'logged_in' in session:
+        if 'logged_in' not in session:
             if (login == 'admin') and (password == 'admin_pass'):
                 session['logged_in'] = True
                 return redirect('/admin_page')
@@ -157,6 +157,12 @@ def admin_page():
         return redirect('/admin_login')
 
 
+@app.route('/admin_logout')
+def admin_logout():
+    session.pop('logged_in', None)
+    return redirect('/admin_login')
+
+
 @app.route('/feedback', methods=['POST', 'GET'])
 def feedback():
     if request.method == 'POST':
@@ -169,7 +175,7 @@ def feedback():
             db.session.add(feedback_data)
             db.session.commit()
             return redirect('/feedback')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
     else:
@@ -182,17 +188,29 @@ def order():
     if request.method == 'POST':
         name = session['user_name']
         contact = request.form['contact']
-        order = request.form['order']
+        order = []
 
-        order_info = Order(name=name, contact=contact, order=order)
+        for i in session['cart']:
+            order.append(i['product_name'])
+
+        order_info = Order(name=name, contact=contact, order=str(order))
 
         try:
             db.session.add(order_info)
             db.session.commit()
             session.pop('cart')
             return redirect('/cart')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
+
+
+@app.route('/order_remove', methods=['POST'])
+def order_remove():
+    order_id = request.form['order_id']
+    Order.query.filter_by(id=order_id).delete()
+    db.session.commit()
+
+    return redirect('/orders')
 
 
 @app.route('/orders')
@@ -210,6 +228,7 @@ def new_product_reg():
         product_name = request.form['product_name']
         product_description = request.form['product_description']
         product_cost = request.form['product_cost']
+        product_category = request.form['category']
         file = request.files['product_img']
 
         if file:
@@ -219,15 +238,16 @@ def new_product_reg():
             product_img_binary = lite.Binary(product_img)
 
         product_data = Product(product_name=product_name,
-            product_description=product_description,
-            product_cost=product_cost,
-            product_img=product_img_binary)
+                               product_description=product_description,
+                               product_cost=product_cost,
+                               product_category=product_category,
+                               product_img=product_img_binary)
 
         try:
             db.session.add(product_data)
             db.session.commit()
             return redirect('/new_product_reg')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
     else:
@@ -237,12 +257,20 @@ def new_product_reg():
             return redirect('/admin_login')
 
 
-@app.route('/products')
+@app.route('/products', methods=['POST', 'GET'])
 def products():
-    products = Product.query.order_by(Product.product_date.desc()).all()
-    for product in products:
-        product.product_img = b64encode(product.product_img).decode('utf-8')
-    return render_template('products.html', products=products)
+    if request.method == 'POST':
+        product_category = request.form['category']
+        products = Product.query.filter_by(product_category=product_category).all()
+        for product in products:
+            product.product_img = b64encode(product.product_img).decode('utf-8')
+        return render_template('index.html', products=products)
+
+    if request.method == 'GET':
+        products = Product.query.order_by(Product.product_date.desc()).all()
+        for product in products:
+            product.product_img = b64encode(product.product_img).decode('utf-8')
+        return render_template('index.html', products=products)
 
 
 @app.route('/products/<int:id>', methods=['POST', 'GET'])
@@ -268,7 +296,7 @@ def product_detail(id):
             db.session.add(product_feedbacks)
             db.session.commit()
             return redirect('/')
-        except:
+        except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
     if request.method == 'GET':
@@ -288,37 +316,27 @@ def product_detail(id):
 
 @app.route('/cart', methods=['POST', 'GET'])
 def cart():
-    if not 'user_name' in session:
+    if 'user_name' not in session:
         return redirect('/user_login')
+        
     else:
         if 'cart' not in session:
             session['cart'] = []
-            session['cart_cost'] = []
-            session['cart_img'] = []
 
         if request.method == 'POST':
-            cart_prod_name = request.form['cart_prod_name']
-            cart_prod_cost = request.form['cart_prod_cost']
-            cart_prod_image = request.form['cart_prod_image']
-
-            session['cart'].append(cart_prod_name)
-            session['cart_cost'].append(cart_prod_cost)
-            session['cart_img'].append(cart_prod_image)
+            session['cart'] += [{
+                'product_name': request.form['product_name'],
+                'product_cost': request.form['product_cost'],
+                'product_img': request.form['product_img'],
+            }]
 
             return redirect('/cart')
 
         if request.method == 'GET':
             cart_products = session['cart']
-            products_cost = session['cart_cost']
-            products_img = session['cart_img']
+            full_cost = sum([float(x['product_cost']) for x in session['cart']])
 
-            full_cost = sum((int(products_cost[i]) for i in range(0, int(len(products_cost)))))
-
-            return render_template('cart.html',
-                cart_products=cart_products,
-                products_cost=products_cost,
-                full_cost=full_cost,
-                products_img=products_img)
+            return render_template('cart.html', cart_products=cart_products, full_cost=full_cost)
 
 
 @app.route('/cart_clear')
@@ -330,7 +348,6 @@ def cart_clear():
 @app.errorhandler(404)
 def not_found(e):
     return render_template('404.html'), 404
-
 
 
 if __name__ == "__main__":

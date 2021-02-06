@@ -4,6 +4,7 @@
 	<title>Отзывы о нас</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='feedback_style.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 	<meta charset="UTF-8">
 </head>
 <body>
@@ -45,7 +46,7 @@
 
 		<form method="post">
 			<input id="name" type="hidden" name="feedback_name" value="{{ session.user_name }} " autocomplete="off"><br>
-			<textarea id="text_form" type="text" name="feedback_text" placeholder="Введите текст отзыва" autocomplete="off" maxlength="200"></textarea><br>
+			<textarea id="text_form" type="text" name="feedback_text" placeholder="Введите текст отзыва" autocomplete="off" maxlength="400"></textarea><br><br>
 			<input id="sub_button" type="submit" value="Отправить отзыв" autocomplete="off">
 		</form>
 
@@ -60,10 +61,11 @@
 	<div id="feedback">
 			{% for el in feedbacks %}
 			<div id="fb_ready">
-				<p>Имя: {{ el.feedback_name }}</p><br>
+				<p id="otziv_name">Имя: {{ el.feedback_name }}</p><br>
 				<p id="otziv">Отзыв: {{ el.feedback_text }}</p>
 				<br>
 			</div>
+
 			{% endfor %}
 
 	{% else %}
@@ -83,6 +85,5 @@
 		<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
 	</div>
 	</footer>
-
 </body>
 </html>

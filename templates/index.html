@@ -5,6 +5,7 @@
 	<meta charset="UTF-8">
 	<title>Главная</title>
 	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
 </head>
 <body>
 
@@ -27,10 +28,18 @@
 
 <div class="image-wrapper">
 	<div class="search">
-		<form name="test" method="post" action="input1.php">
-			<input class="input-search" type="text" placeholder="Поиск товара по категории">
+		<form method="post" action="/products">
+			<select name="category">
+				<option>Выберите категорию</option>
+				<option value="Браслет">Браслет</option>
+				<option value="Чокер">Чокер</option>
+				<option value="Цепочка">Цепочка</option>
+				<option value="Кулон">Кулон</option>
+				<option value="Сережка">Сережка</option>
+				<option value="Кольцо">Кольцо</option>
+			</select>
+			<button class="button-search" type="submit">Поиск</button>
 		</form>
-		<button class="button-search">Поиск</button>
 	</div>
 
 	<div class="description">
@@ -47,28 +56,32 @@
 	</div>
 
 	<nav class="navigation">
-		<button class="active-button"><a href="/">ГЛАВНАЯ</a></button>
-		<button class="button"><a href="#">О НАС</a></button>
-		<button class="button"><a href="/products">КАТАЛОГ</a></button>
-		<button class="button"><a href="#contacts">КОНТАКТЫ</a></button>
-		<button class="button"><a href="/cart">КОРЗИНА</a></button>
+		<button class="active-button" onclick="window.location.href = '/';"><a href="/">ГЛАВНАЯ</a></button>
+		<button class="button" onclick="window.location.href = '/feedback';"><a href="#">О НАС</a></button>
+		<button class="button" onclick="window.location.href = '/products';"><a href="/products">КАТАЛОГ</a></button>
+		<button class="button" onclick="window.location.href = '#contacts';"><a href="#contacts">КОНТАКТЫ</a></button>
+		<button class="button" onclick="window.location.href = '/cart';"><a href="/cart">КОРЗИНА</a></button>
 	</nav>
 </div>
 
 
 <div class="products__wrapper">
 	<div class="products__cards" id="products">
-		{% for el in products %}
-			<a class="card" href="/products/{{ el.id }}">
-				<img class="card__image" width="261" height="262" src="data:;base64,{{ el.product_img }}">
-				<div class="card__content">
-					<div class="card__content__price">{{ el.product_cost }} тенге</div>
-					<div class="card__content__title">
-						<img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
-					</div>
-				</div>
-			</a>
-		{% endfor %}
+        {% if products|length > 0 %}
+            {% for el in products %}
+                <a class="card" href="/products/{{ el.id }}">
+                    <img class="card__image" width="261" height="262" src="data:;base64,{{ el.product_img }}">
+                    <div class="card__content">
+                        <div class="card__content__price">{{ el.product_cost }} тенге</div>
+                        <div class="card__content__title">
+                            <img class="card__like" src="{{ url_for('static', filename='icons/like-icon.png') }}">
+                        </div>
+                    </div>
+                </a>
+            {% endfor %}
+        {% else %}
+            <p id="netu">В выбранной Вами категории пока нет товаров<br><br><span id="netu_else">:(</span></p>
+        {% endif %}
 	</div>
 </div>
 

@@ -12,7 +12,7 @@ body {
   height: 38px;
   max-width: 100%;
   position: sticky;
-  background: #393F3A;
+  background: #2F2C42;
 }
 .header__panel .wrapper {
   max-width: 1150px;
@@ -37,17 +37,13 @@ body {
   color: #ECE0E0;
   font-size: 14px;
   font-family: sans-serif;
-  margin-right: 5px;
-}
-.login span{
-  margin-right: 30px;
 }
 .login a {
   color: white;
   text-decoration: none;
 }
 .login a:hover {
-  color: #228751;
+  color: #836CFF;
 }
 
 .image-wrapper {
@@ -69,7 +65,8 @@ body {
 .image-wrapper .button-search {
   width: 59px;
   height: 27px;
-  background: #C4C4C4;
+  background: #58517E;
+  color: #ECE0E0;
   border-radius: 10px;
   cursor: pointer;
   outline: none;
@@ -78,7 +75,7 @@ body {
   transition-duration: 0.5s;
 }
 .image-wrapper .button-search:hover {
-  background-color: #788E7B;
+  background-color: #836CFF;
   color: #ECE0E0;
 }
 
@@ -89,7 +86,7 @@ body {
 .description h1 {
   font-weight: 200;
   font-size: 96px;
-  color: #4C6247;
+  color: #58517E;
   margin: 0;
   padding-top: 30px;
 }
@@ -111,7 +108,7 @@ body {
   width: 823px;
   height: 116px;
   border-radius: 20px;
-  background: #788E7B;
+  background: #58517E;
   position: relative;
 }
 .leaf-block .box_img {
@@ -127,20 +124,24 @@ body {
 .navigation .button {
   width: 200px;
   height: 40px;
-  background: #788E7B;
+  background: #58517E;
   border-radius: 10px;
   outline: none;
   border: none;
 }
 .navigation .button:hover {
-  background: #485e4a;
+  background: #836CFF;
   transition-duration: 0.5s;
+  cursor: pointer;
 }
 .navigation .active-button {
   width: 200px;
   height: 40px;
-  background: #393F3A;
+  background: #2F2C42;
   border-radius: 10px;
+  outline: none;
+  border: none;
+  cursor: pointer;
 }
 .navigation a {
   font-size: 14px;
@@ -189,17 +190,57 @@ body {
   justify-content: center;
   align-items: center;
   flex-direction: column;
-  background: #393F3A;
+  background: #2F2C42;
 }
 .footer h2 {
   font-size: 48px;
-  color: #788E7B;
+  color: #ECE0E0;
   font-weight: lighter;
 }
 .footer span {
   display: block;
   font-size: 18px;
-  color: #788E7B;
+  color: #ECE0E0;
 }
 
-/*# sourceMappingURL=index.css.map */
+#netu {
+  font-family: Prociono;
+  font-size: 30px;
+  text-align: center;
+  height: 300px;
+  margin-top: 100px;
+}
+#netu #netu_else {
+  font-size: 40px;
+}
+#netu #netu_else:hover {
+  animation-name: color_change;
+  animation-duration: 15s;
+  animation-fill-mode: forwards;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  cursor: pointer;
+}
+@keyframes color_change {
+  14% {
+    color: red;
+  }
+  28% {
+    color: orange;
+  }
+  44% {
+    color: yellow;
+  }
+  57% {
+    color: green;
+  }
+  71% {
+    color: lightblue;
+  }
+  85% {
+    color: blue;
+  }
+  100% {
+    color: purple;
+  }
+}
