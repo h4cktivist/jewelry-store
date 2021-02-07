@@ -251,6 +251,7 @@ a {
   outline: none;
   margin: 20px;
   resize: none;
+  padding: 10px;
 }
 .popup .popup_action {
   max-width: 400px;
