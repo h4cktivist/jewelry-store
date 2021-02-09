@@ -1,10 +1,11 @@
 from datetime import datetime
 from base64 import b64encode
-from flask import Flask, render_template, request, redirect, session
+from flask import Flask, render_template, request, redirect, session, flash
 from flask_sqlalchemy import SQLAlchemy
 from flask_session import Session
 import sqlite3 as lite
 from werkzeug.utils import secure_filename
+
 
 app = Flask(__name__)
 app.secret_key = 'secret_key'
@@ -201,6 +202,7 @@ def order():
             db.session.add(order_info)
             db.session.commit()
             session.pop('cart')
+            flash('Ваш заказ был отправлен. С Вами скоро свяжется менеджер.')
             return redirect('/cart')
         except RuntimeError:
             return render_template(DB_ERROR_PAGE)
