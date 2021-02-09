@@ -155,12 +155,12 @@ body {
   height: 50px;
   font-size:16px;
   border-radius: 10px;
-  background: #836CFF;
+  background: #2F2C42;
   color: #ECE0E0;
   outline: none;
   border: none;
   &:hover {
-    background: #2F2C42;
+    background: #836CFF;
     color:#ECE0E0;
     transition-duration: 0.5s;
     cursor:pointer;
@@ -262,6 +262,41 @@ body {
     padding:20px;
   }
 }
+
+::-webkit-scrollbar-button {
+background-image:url('');
+background-repeat:no-repeat;
+width:5px;
+height:0px
+}
+
+::-webkit-scrollbar-track {
+background-color: #2F2C42;
+}
+
+::-webkit-scrollbar-thumb {
+-webkit-border-radius: 20px;
+border-radius: 20px;
+background-color:#58517E;
+background-image:url('https://yraaa.ru/_pu/24/59610063.png');
+background-position:center;
+background-repeat:no-repeat;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background-color:#836CFF;
+}
+
+::-webkit-resizer{
+background-image:url('');
+background-repeat:no-repeat;
+width:7px;
+height:20px
+}
+
+::-webkit-scrollbar{
+width: 10px;
+} 
 
 
 

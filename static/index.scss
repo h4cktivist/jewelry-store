@@ -251,3 +251,37 @@ body {
   100%{color: purple;}
   }
 }
+::-webkit-scrollbar-button {
+background-image:url('');
+background-repeat:no-repeat;
+width:5px;
+height:0px
+}
+
+::-webkit-scrollbar-track {
+background-color: #2F2C42;
+}
+
+::-webkit-scrollbar-thumb {
+-webkit-border-radius: 20px;
+border-radius: 20px;
+background-color:#58517E;
+background-image:url('https://yraaa.ru/_pu/24/59610063.png');
+background-position:center;
+background-repeat:no-repeat;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background-color:#836CFF;
+}
+
+::-webkit-resizer{
+background-image:url('');
+background-repeat:no-repeat;
+width:7px;
+height:20px
+}
+
+::-webkit-scrollbar{
+width: 10px;
+} 
