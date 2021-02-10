@@ -37,6 +37,15 @@
 
 	<div class="cart_title">Корзина</div>
 	<div class="decoration_line"></div>
+
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            {% for msg in messages %}
+                <p>{{ msg }}</p>
+            {% endfor %}
+        {% endif %}
+    {% endwith %}
+
 	{% if cart_products|length > 0 %}
 	<div class="main_content">
 
