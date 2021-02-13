@@ -49,8 +49,10 @@
 	{% if cart_products|length > 0 %}
 	<div class="main_content">
 
+	<div class="product_main">
 		{% for p in cart_products %}
-			<div class="product">
+
+				<div class="product">
 					<div class="product_image">
 						<img class="product_image_inner" width="100" height="100" src="data:;base64,{{ p.product_img }}">
 					</div>
@@ -62,8 +64,10 @@
 					<div class="product_price">
 						<div class="product_price_inner">{{ p.product_cost }} тенге</div>
 					</div>
-			</div>
+				</div>
+
 		{% endfor %}
+	</div>
 
 		<div class="price">
 			<div class="price_total">Итого: <span class="green">{{ full_cost }}</span> тенге</div>
