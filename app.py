@@ -129,7 +129,7 @@ def logout():
     return redirect('/')
 
 
-@app.route('/admin_login', methods=['POST', 'GET'])
+@app.route('/admin/login', methods=['POST', 'GET'])
 def admin_login():
     if request.method == 'POST':
         login = request.form['login']
@@ -138,32 +138,32 @@ def admin_login():
         if 'logged_in' not in session:
             if (login == 'admin') and (password == 'admin_pass'):
                 session['logged_in'] = True
-                return redirect('/admin_page')
+                return redirect('/admin')
             else:
                 return render_template(LOGIN_ERROR_PAGE)
         else:
             if 'logged_in' in session:
-                return redirect('/admin_page')
+                return redirect('/admin')
 
     else:
         if 'logged_in' in session:
-            return redirect('/admin_page')
+            return redirect('/admin')
 
         return render_template('admin_login.html')
 
 
-@app.route('/admin_page')
+@app.route('/admin')
 def admin_page():
     if 'logged_in' in session:
         return render_template('admin_page.html')
     else:
-        return redirect('/admin_login')
+        return redirect('/admin/login')
 
 
-@app.route('/admin_logout')
+@app.route('/admin/logout')
 def admin_logout():
     session.pop('logged_in', None)
-    return redirect('/admin_login')
+    return redirect('/admin/login')
 
 
 @app.route('/feedback', methods=['POST', 'GET'])
@@ -214,19 +214,19 @@ def order_remove():
     Order.query.filter_by(id=order_id).delete()
     db.session.commit()
 
-    return redirect('/orders')
+    return redirect('/admin/orders')
 
 
-@app.route('/orders')
+@app.route('/admin/orders')
 def orders():
     if 'logged_in' in session:
         orders = Order.query.order_by(Order.id.desc()).all()
         return render_template('orders.html', orders=orders)
     else:
-        return redirect('/admin_login')
+        return redirect('/admin/login')
 
 
-@app.route('/new_product_reg', methods=['POST', 'GET'])
+@app.route('/admin/new_product_reg', methods=['POST', 'GET'])
 def new_product_reg():
     if request.method == 'POST':
         product_name = request.form['product_name']
@@ -250,7 +250,7 @@ def new_product_reg():
         try:
             db.session.add(product_data)
             db.session.commit()
-            return redirect('/new_product_reg')
+            return redirect('/admin/new_product_reg')
         except RuntimeError:
             return render_template(DB_ERROR_PAGE)
 
@@ -258,7 +258,7 @@ def new_product_reg():
         if 'logged_in' in session:
             return render_template('new_product_reg.html')
         else:
-            return redirect('/admin_login')
+            return redirect('/admin/login')
 
 
 @app.route('/products', methods=['POST', 'GET'])
