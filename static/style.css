@@ -19,7 +19,7 @@ header{
 	font-style: normal;
 	color: #58517E;
 	animation-name: entrance_opacity;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 }
 
@@ -32,7 +32,7 @@ header{
 	letter-spacing: 0em;
 	text-align: center;
 	animation-name: entrance_opacity;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 }
 
@@ -48,7 +48,7 @@ header{
 	font-family: Prociono;
 	font-size: 50px;
 	animation-name: entrance_opacity;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 	animation-delay: 1s;
 	opacity: 0;
@@ -61,7 +61,7 @@ header{
 	font-family: Prociono;
 	font-size: 45px;
 	animation-name: entrance_opacity;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 	animation-delay: 1s;
 	opacity: 0;
@@ -75,7 +75,7 @@ header{
 	font-family: Prociono;
 	font-size: 45px;
 	animation-name: entrance_opacity;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 	animation-delay: 0s;
 	opacity: 0;
@@ -94,7 +94,7 @@ header{
 	font-size: 20px;
 	color: #E5E5E5;
 	animation-name: entrance_opacity;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	animation-delay: 2s;
 	animation-fill-mode: forwards;
 	outline: none;
@@ -121,7 +121,7 @@ header{
 	font-size: 20px;
 	color: #E5E5E5;
 	animation-name: entrance_opacity;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	animation-delay: 2s;
 	animation-fill-mode: forwards;
 	outline: none;
@@ -147,7 +147,7 @@ header{
 #form.active{
 	display: block;
 	animation-name: entrance_opacity;
-	animation-duration: 2.3s;
+	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 }
 
@@ -240,7 +240,7 @@ form{
 
 #regform {
 	animation-name: entrance_opacity;
-	animation-duration: 3s;
+	animation-duration: 1.5s;
 	animation-fill-mode: forwards;
 	animation-delay: 1s;
 	opacity: 0;

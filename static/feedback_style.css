@@ -153,3 +153,11 @@ i:hover{
 	100%{color: purple;}
 }
 
+#else_log{
+	text-align: center;
+	font-family: Prociono;
+	font-size: 45px;
+	margin-top: 100px;
+	margin-bottom: 100px;
+	color: #58517E;
+}

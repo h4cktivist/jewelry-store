@@ -41,7 +41,10 @@
     {% with messages = get_flashed_messages() %}
         {% if messages %}
             {% for msg in messages %}
+            <div id="msg">
                 <p>{{ msg }}</p>
+                <div class="progress"></div>
+            </div>
             {% endfor %}
         {% endif %}
     {% endwith %}
@@ -79,7 +82,7 @@
 
 
 	{% else %}
-		<p class="else_text">В Вашей корзине пока нет товаров.</p>
+		<p id="else_text">В Вашей корзине пока нет товаров.</p>
 	{% endif %}
 
 
@@ -117,6 +120,7 @@
 
 
 	<script src="{{ url_for('static', filename='cart.js') }}"></script>
+	<script src="{{ url_for('static', filename='cart2.js') }}"></script>
 </body>
 
 </html>
