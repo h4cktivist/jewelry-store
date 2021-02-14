@@ -207,5 +207,5 @@ select:hover{
   outline: 0;
 }
 .custom-file-input:active::before {
-  background: -webkit-linear-gradient(top, #4ca655, #417246); 
+  background-color: #836CFF;
 }
