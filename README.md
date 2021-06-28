@@ -11,8 +11,6 @@
 
 ![image](https://user-images.githubusercontent.com/51692800/118803057-5424ea80-b8bc-11eb-8735-e61c1980a7b5.png)
 
-### Demo: [click](http://yupibum.pythonanywhere.com)
-
 ### Run it by yourself
 
 ```sh
@@ -22,3 +20,10 @@ pip install - r requirements.txt
 
 python app.py
 ```
+
+### Run it with Docker
+```sh
+docker pull h4cktivist/jewelry-store
+docker run -p 5000:5000 h4cktivist/jewelry-store
+```
+[Link to DockerHub](https://hub.docker.com/r/h4cktivist/jewelry-store)
