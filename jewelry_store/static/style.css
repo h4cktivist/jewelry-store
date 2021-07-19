@@ -1,0 +1,282 @@
+body{
+	background-color: #E5E5E5;
+	margin: 0;
+}
+
+header{
+	display: block;
+	text-align: center;
+}
+
+#headtxt{
+	margin: 0 auto;
+	position: relative;
+	top: 20px;
+	width: 100px;
+	border-bottom: 1px solid black;
+	font-family: Prociono;
+	font-size: 64px;
+	font-style: normal;
+	color: #58517E;
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+}
+
+#headtxt_under{
+	font-family: Segoe UI Emoji;
+	font-size: 18px;
+	font-style: normal;
+	font-weight: 400;
+	line-height: 19px;
+	letter-spacing: 0em;
+	text-align: center;
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+}
+
+.poloska{
+	height: 38px;
+	background: #2F2C42;
+}
+
+#entrance{
+	text-align: center;
+	position: relative;
+	top: 100px;
+	font-family: Prociono;
+	font-size: 50px;
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	opacity: 0;
+}
+
+#reg_entrance{
+	text-align: center;
+	position: relative;
+	top: 10px;
+	font-family: Prociono;
+	font-size: 45px;
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	opacity: 0;
+}
+
+#auth_entrance{
+	display: none;
+	text-align: center;
+	position: relative;
+	top: 10px;
+	font-family: Prociono;
+	font-size: 45px;
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+	animation-delay: 0s;
+	opacity: 0;
+}
+
+#entrance_btn{
+	display: block;
+	width: 130px;
+	height: 35px;
+	margin: 0 auto;
+	position: relative;
+	top: 130px;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-delay: 2s;
+	animation-fill-mode: forwards;
+	outline: none;
+	opacity: 0;
+	cursor: pointer;
+	background-color: #58517E;
+}
+
+#entrance_btn:active{
+	top: 128px;
+	background-color: #836CFF;
+}
+
+#entrance_reg_btn{
+	display: block;
+	width: 200px;
+	height: 35px;
+	margin: 0 auto;
+	position: relative;
+	top: 130px;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-delay: 2s;
+	animation-fill-mode: forwards;
+	outline: none;
+	opacity: 0;
+	cursor: pointer;
+	background-color: #58517E;
+}
+
+#entrance_reg_btn:active{
+	top: 128px;
+	background-color: #836CFF;
+}
+
+@keyframes entrance_opacity{
+	0%{opacity: 0;}
+	100%{opacity: 1;}
+}
+
+#form{
+	display: none;
+}
+
+#form.active{
+	display: block;
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+}
+
+form{
+	text-align: center;
+	position: relative;
+	top: 30px;
+}
+
+#nameput{
+	width: 400px;
+	height: 50px;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	outline: none;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#reg_nameput{
+	width: 400px;
+	height: 50px;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	outline: none;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+	margin-bottom: 10px;
+}
+
+#nameput::placeholder{
+	color: black;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+}
+
+#reg_nameput::placeholder{
+	color: black;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+}
+
+#button{
+	width: 120px;
+	height: 30px;
+	background-color: #58517E;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	outline: none;
+	text-align: center;
+	position: relative;
+	top: 20px;
+	cursor: pointer;
+}
+
+#button:active{
+	top: 18px;
+	background-color: #836CFF;
+}
+
+
+#regbutton{
+	width: 200px;
+	height: 30px;
+	background-color: #58517E;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	outline: none;
+	text-align: center;
+	position: relative;
+	top: 20px;
+	cursor: pointer;
+}
+
+#regbutton:active{
+	top: 18px;
+	background-color: #836CFF;
+}
+
+#regform {
+	animation-name: entrance_opacity;
+	animation-duration: 1.5s;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	opacity: 0;
+}
+
+::-webkit-scrollbar-button {
+background-image:url('');
+background-repeat:no-repeat;
+width:5px;
+height:0px
+}
+
+::-webkit-scrollbar-track {
+background-color: #2F2C42;
+}
+
+::-webkit-scrollbar-thumb {
+-webkit-border-radius: 20px;
+border-radius: 20px;
+background-color:#58517E;
+background-image:url('https://yraaa.ru/_pu/24/59610063.png');
+background-position:center;
+background-repeat:no-repeat;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background-color:#836CFF;
+}
+
+::-webkit-resizer{
+background-image:url('');
+background-repeat:no-repeat;
+width:7px;
+height:20px
+}
+
+::-webkit-scrollbar{
+width: 10px;
+} 

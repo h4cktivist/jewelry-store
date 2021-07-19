@@ -18,7 +18,7 @@ git clone https://github.com/h4cktivist/jewelry-store.git
 cd jewelry-store
 pip install - r requirements.txt
 
-python app.py
+python main.py
 ```
 
 ### Run it with Docker

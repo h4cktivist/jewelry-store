@@ -1,0 +1,211 @@
+body{
+	background-color: #E5E5E5;
+	margin: 0;
+	cursor: default;
+	overflow-x: hidden;
+}
+
+header{
+	display: block;
+	text-align: center;
+}
+
+.poloska{
+	height: 38px;
+	background: #2F2C42;
+}
+
+.section{
+	border:3px solid #2F2C42;
+	border-radius: 7px;
+	width: 400px;
+	height: 400px;
+	margin: 0 auto;
+}
+
+form{
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+	top: 70px;
+}
+
+#npr{
+	margin: 0 auto;
+	text-align: center;
+	position: relative;
+	top: 40px;
+}
+
+input{
+	width: 400px;
+	height: 50px;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	outline: none;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 24px;
+	margin-bottom: 10px;
+}
+
+#entrance{
+	text-align: center;
+	position: relative;
+	top: 100px;
+	font-family: Prociono;
+	font-size: 50px;
+	animation-name: entrance_opacity;
+	animation-duration: 3s;
+	animation-fill-mode: forwards;
+	animation-delay: 1s;
+	opacity: 1;
+}
+
+#button{
+	width: 120px;
+	height: 30px;
+	background-color: #58517E;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #E5E5E5;
+	outline: none;
+	text-align: center;
+	position: relative;
+	top: 20px;
+	cursor: pointer;
+}
+
+#button:active{
+	top: 18px;
+	background-color: #836CFF;
+}
+
+#button:hover{
+	background-color: #836CFF;
+}
+
+h1{
+	text-align: center;
+	font-family: Prociono;
+}
+
+
+a{
+	font-size: 20px;
+	font-family: Prociono;
+	font-style: normal;
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+}
+
+a:hover{
+	color: #836CFF;
+}
+
+#a_prd_reg{
+	font-size: 30px;
+	font-family: Prociono;
+	font-style: normal;
+	margin-bottom: 20px;
+	margin: 0 auto;
+}
+
+#a_prd_reg:hover{
+	color: #bf94e4;
+}
+
+textarea{
+  	min-height: 50px;
+  	height: 100px;
+  	max-height: 185px;
+  	min-width: 400px;
+  	width: 100px;
+  	max-width: 400px;
+  	margin-bottom: 10px;
+  	text-align: center;
+  	border: solid 2px #393F3A;
+  	font-family: Prociono;
+	font-size: 20px;
+}
+
+select{
+	outline: none;
+	margin-bottom: 20px;
+	width: 400px;
+	height: 45px;
+	font-family: Prociono;
+	font-size: 20px;
+}
+
+select:hover{
+	background: white;
+}
+
+#file{
+	width: 400px;
+	height: 50px;
+	border: none;
+	outline: none;
+	text-align: center;
+	font-family: Prociono;
+	font-size: 20px;
+	margin-top: 20px;
+}
+
+#button_prd_reg{
+	width: 400px;
+	height: 45px;
+	background-color: #58517E;
+	border: solid 2px #2F2C42;
+	border-radius: 5px;
+	font-family: Prociono;
+	font-size: 20px;
+	color: #ECE0E0;
+	outline: none;
+	text-align: center;
+	position: relative;
+	top: 20px;
+	cursor: pointer;
+}
+
+#button_prd_reg:active{
+	top: 18px;
+}
+
+#button_prd_reg:hover{
+	background-color: #836CFF;
+}
+
+.custom-file-input {
+  color: transparent;
+}
+.custom-file-input::-webkit-file-upload-button {
+  visibility: hidden;
+}
+.custom-file-input::before {
+  content: 'Выберите изображение';
+  color: #ECE0E0;
+  display: inline-block;
+  background-color: #58517E;
+  border: 1px solid #999;
+  border-radius: 3px;
+  padding: 5px 8px;
+  outline: none;
+  white-space: nowrap;
+  -webkit-user-select: none;
+  cursor: pointer;
+  font-size: 10pt;
+}
+.custom-file-input:hover::before {
+  border-color: black;
+}
+.custom-file-input:active {
+  outline: 0;
+}
+.custom-file-input:active::before {
+  background-color: #836CFF;
+}

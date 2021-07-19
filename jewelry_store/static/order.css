@@ -1,0 +1,133 @@
+body{
+	background-color: #E5E5E5;
+	margin: 0;
+	cursor: default;
+	overflow-x: hidden;
+}
+
+.poloska{
+	height: 38px;
+	background: #2F2C42;
+}
+
+h1{
+	text-align: center;
+}
+
+h2{
+	text-align: center;
+	margin-top: 40px;
+}
+
+img{
+	width: 360px;
+	height: 360px;
+ }
+
+.order{
+	float: left;
+	border: 3px solid #2F2C42;
+	border-radius: 5px;
+	margin-right: 20px;
+	margin-left: 20px;
+	margin-bottom: 20px;
+	min-width: 200px;
+	max-width: 600px;
+	min-height: 100px;
+	max-height: 300px;
+	background-color: white;
+	text-align: center;
+	overflow-wrap: break-word;
+}
+
+p{
+	font-family: Prociono;
+	font-size: 18px;
+	text-align: center;
+}
+
+#name{
+	font-family: Prociono;
+	font-size: 18px;
+	text-align: center;
+}
+
+#button{
+	outline: none;
+	border: 2px solid #2F2C42;
+	border-radius: 5px;
+	margin-bottom: 20px;
+	background-color: #58517E;
+	color: white;
+	width: 100px;
+	height: 45px;
+	position: relative;
+	cursor: pointer;
+}
+
+#button:active{
+	top: -10px;
+	background-color: #836CFF;
+}
+
+#button:hover{
+	background-color: #836CFF;
+}
+
+a{
+	font-size: 20px;
+	font-family: Prociono;
+	font-style: normal;
+	margin-left: 20px;
+	text-decoration: none;
+	color: black;
+}
+
+a:hover{
+	color: #bf94e4;
+}
+
+#a_prd_reg{
+	font-size: 30px;
+	font-family: Prociono;
+	font-style: normal;
+	margin-bottom: 20px;
+	margin: 0 auto;
+	text-decoration: none;
+	margin-left: 20px;
+}
+
+::-webkit-scrollbar-button {
+background-image:url('');
+background-repeat:no-repeat;
+width:5px;
+height:0px
+}
+
+::-webkit-scrollbar-track {
+background-color: #2F2C42;
+}
+
+::-webkit-scrollbar-thumb {
+-webkit-border-radius: 20px;
+border-radius: 20px;
+background-color:#58517E;
+background-image:url('https://yraaa.ru/_pu/24/59610063.png');
+background-position:center;
+background-repeat:no-repeat;
+}
+
+::-webkit-scrollbar-thumb:hover{
+background-color:#836CFF;
+}
+
+::-webkit-resizer{
+background-image:url('');
+background-repeat:no-repeat;
+width:7px;
+height:20px
+}
+
+::-webkit-scrollbar{
+width: 10px;
+} 

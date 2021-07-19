@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Страница администратора</title>
+    <link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='admin.css') }}">
+    <meta charset="UTF-8">
+</head>
+<body>
+
+	<div class="poloska"></div>
+	<h1>Страница администратора</h1>
+	<div class="section">
+	<br>
+	<a href="/admin/new_product_reg">→Регистрация нового продукта</a>
+	<br>
+	<br>
+	<a href="/admin/orders">→Просмотр заказов</a>
+	<br>
+	<br>
+	<a href="/" onclick="window.location.href = '/';">→На главную</a>
+	<br>
+	<br>
+	<a href="/admin/logout">Выйти</a>
+    </div>
+
+</body>
+</html>

@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Отзывы о нас</title>
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='index.css') }}">
+	<link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='feedback_style.css') }}">
+	<link rel="shortcut icon" href="{{ url_for('static', filename='favicon.ico') }}" type="image/x-icon">
+	<meta charset="UTF-8">
+</head>
+<body>
+
+	<header class="header__panel">
+		<div class="wrapper">
+			<div class="social">
+				<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/vk-icon.png') }}"></a></div>
+				<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/google-icon.png') }}"></a></div>
+				<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
+			</div>
+			<div class="login">
+				{% if session.user_name %}
+					<span>Вы вошли как <i>{{ session.user_name }}</i></span> <a class="log" href="/user_logout">Выйти</a>
+				{% else %}
+					 <a href="/user_login">Войти</a>
+				{% endif %}
+			</div>
+		</div>
+	</header>
+
+	<div class="among_us">
+		<p>Уважаемые покупатели!</p>
+		<p>Предлагаем вашему вниманию интернет- магазин бижутерии ручной работы YUPIBUM</p>
+		<p>У нас большой выбор украшений- чокеры, цепочки, кулоны, браслеты, кольца</p>
+		<p>Наши изделия подчеркнут ваш стиль, индивидуальность, красоту и креативность.</p>
+		<p>В нашем магазине вас ждут низкие цены, авторский дизайн, вежливое обслуживание!</p>
+		<p>При изготовлении используются гипоаллергенный материалы, драгоценные и полу драгоценные камни.</p>
+		<p>Изготовливаем в самые короткие сроки и по вашим индивидуальным заказам.</p>
+		<p>Все наши изделия выполнены с любовью и теплом!</p>
+		<p>Имеется доставка по всему городу! По всем вопросам писать на WatsApp или в директ</p>
+	</div>
+	<br>
+
+	<div id="fb_form">
+
+	{% if session.user_name %}
+		<p id="user_name">Ваше имя: {{ session.user_name }}</p>
+
+		<form method="post">
+			<input id="name" type="hidden" name="feedback_name" value="{{ session.user_name }} " autocomplete="off"><br>
+			<textarea id="text_form" type="text" name="feedback_text" placeholder="Введите текст отзыва" autocomplete="off" maxlength="400"></textarea><br><br>
+			<input id="sub_button" type="submit" value="Отправить отзыв" autocomplete="off">
+		</form>
+
+	</div>
+
+	{% else %}
+		<p id="else_log">Вы должны войти, чтобы оставить отзыв.</p>
+	{% endif %}
+
+	{% if feedbacks|length > 0 %}
+
+	<div id="feedback">
+			{% for el in feedbacks %}
+			<div id="fb_ready">
+				<p id="otziv_name">Имя: {{ el.feedback_name }}</p><br>
+				<p id="otziv">Отзыв: {{ el.feedback_text }}</p>
+				<br>
+			</div>
+
+			{% endfor %}
+
+	{% else %}
+		<p id="fb_else">Здесь пока нет отзывов<br><span>:(</span></p>
+	{% endif %}
+
+	</div>
+
+	<footer class="footer" id="contacts">
+	<h2>YUPIBUM</h2>
+	<div class="decoration__line"></div>
+	<span>- украшения ручной работы,</span>
+	<span> изготовленные с любовью.</span>
+	<div class="social">
+		<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/vk-icon.png') }}"></a></div>
+		<div class="social__item"><a href="#"><img src="{{ url_for('static', filename='icons/google-icon.png') }}"></a></div>
+		<div class="social__item"><a href="https://www.instagram.com/yupibum.kz/" target="_blank"><img src="{{ url_for('static', filename='icons/inst-icon.png') }}"></a></div>
+	</div>
+	</footer>
+</body>
+</html>
